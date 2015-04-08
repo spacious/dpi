@@ -9,7 +9,6 @@ var templates = require('metalsmith-templates');
 var assets = require('metalsmith-assets');
 var metallic = require('metalsmith-metallic');
 var permalinks = require('metalsmith-permalinks');
-var relative = require('metalsmith-relative');
 
 var handlebars = require('handlebars');
 handlebars.registerHelper('replace', function( string, to_replace, replacement ){
