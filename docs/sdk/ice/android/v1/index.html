@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Developer Portal">
+    <meta name="author" content="Android ICE SDK">
+
+    <title>Android ICE SDK</title>
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200,400,700,900|Lato:400,900">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/tomorrow.min.css">
+
+    <link href="/css/theme.css" rel="stylesheet">
+    <!--<link href="/css/highlight-theme.css" rel="stylesheet">-->
+    <link href="/css/api-default.css" rel="stylesheet">
+    <link href="/css/portal.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+    <div class="container">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><i class="fa fa-chevron-left"></i>dpi<i class="fa fa-chevron-right"></i></a>
+        </div>
+
+        <div class="navbar-collapse collapse navbar-right">
+
+            <ul class="nav navbar-nav">
+
+                <!--<li class="active"><a href="index.html">HOME</a></li>-->
+                <!--<li><a href="#/login">Login</a></li>-->
+                <!--<li><a href="#/contact">Contact</a></li>-->
+                <li><a href="/about/">About</a></li>
+
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/docs">Doc Overview</a></li>
+                    
+                                <li role="presentation" class="divider"></li>
+                                <li class="dropdown-header">SDK</li>
+                            
+                                        
+                                        
+                                    
+                                                
+                                                
+                                            
+                                                        
+                                                        <li><a href="/docs/sdk/ice/android/v1"><i class="fa fa-android"></i> Android ICE SDK v1</a></li>
+                                                    
+                                                
+                                                
+                                            
+                                                        
+                                                        <li><a href="/docs/sdk/ice/ios/v1"><i class="fa fa-apple"></i> iOS ICE SDK v1</a></li>
+                                                    
+                                                
+                                                
+                                            
+                                                        
+                                                        <li><a href="/docs/sdk/ice/js/v1"><i class="fa fa-code"></i> JS ICE SDK v1</a></li>
+                                                    
+                                <li role="presentation" class="divider"></li>
+                                <li class="dropdown-header">API</li>
+                            
+                                        
+                                        
+                                    
+                                                
+                                                <li><a href="/docs/api/hapi/v1"><i class="fa fa-code"></i> Hopster API (HAPI) v1</a></li>
+                                            
+                                        
+                                        
+                                    
+                                                
+                                                <li><a href="/docs/api/ice/v2"><i class="fa fa-code"></i> Inmar Consumer Extension (ICE) API v2</a></li>
+                                            
+                    </ul>
+                </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+</div>
+<div class="alert" role="alert"></div><div class="content container">
+    <div class="row">
+        <div class="col-md-10 col-md-push-1">
+            <h1 id="android-ice-sdk">Android ICE SDK</h1>
+<p>Download the official Android ICE SDK to build apps for Android phones, tablets, wearables, TVs, and more.</p>
+<h2 id="installation">Installation</h2>
+<p>Everything you need to get started with the Android SDK, and everything you need to know about installing it.</p>
+<h2 id="quickstart">Quickstart</h2>
+<p><pre><code class="hljs java">GitHubClient client = <span class="hljs-keyword">new</span> GitHubClient().setCredentials(<span class="hljs-string">&quot;user&quot;</span>, <span class="hljs-string">&quot;p4ssw0rd&quot;</span>);
+    Gist gist = <span class="hljs-keyword">new</span> Gist().setDescription(<span class="hljs-string">&quot;Prints a string to standard out&quot;</span>);
+    GistFile file = <span class="hljs-keyword">new</span> GistFile().setContent(<span class="hljs-string">&quot;System.out.println(\&quot;Hello World\&quot;);&quot;</span>);
+    gist.setFiles(Collections.singletonMap(<span class="hljs-string">&quot;Hello.java&quot;</span>, file));
+    gist = <span class="hljs-keyword">new</span> GistService(client).createGist(gist);</code></pre></p>
+<h2 id="api">API</h2>
+<h2 id="event-intent">Event Intent</h2>
+<p>If all you want to do is add an event to the user&#39;s calendar, you can use an <code>ACTION_INSERT</code> intent with the data defined by Events.
+<code>CONTENT_URI</code> in order to start an activity in the Calendar app that creates new events.
+Using the intent does not require any permission and you can specify event details with the following extras:</p>
+<ul>
+<li><code>Events.TITLE</code>: Name for the event</li>
+<li><code>CalendarContract.EXTRA_EVENT_BEGIN_TIME</code>: Event begin time in milliseconds from the epoch</li>
+<li><code>CalendarContract.EXTRA_EVENT_END_TIME</code>: Event end time in milliseconds from the epoch</li>
+<li><code>Events.EVENT_LOCATION</code>: Location of the event</li>
+<li><code>Events.DESCRIPTION</code>: Event description</li>
+<li><code>Intent.EXTRA_EMAIL</code>: Email addresses of those to invite</li>
+<li><code>Events.RRULE</code>: The recurrence rule for the event</li>
+<li><code>Events.ACCESS_LEVEL</code>: Whether the event is private or public</li>
+<li><code>Events.AVAILABILITY</code>: Whether the time period of this event allows for other events to be scheduled at the same time</li>
+</ul>
+<h3 id="devices">Devices</h3>
+<p><img src="/images/jb-rtl-arabic-n4.png" alt="RTL"></p>
+
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <p class="copyright">&copy 2015 Developer Portal</p>
+</div>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/js/portal.js"></script>
+</body>
+</html>

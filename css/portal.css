@@ -1,0 +1,8 @@
+.alert {
+    margin: 70px 10%;
+    position: absolute;
+    width:80%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Developer Portal">
+    <meta name="author" content="JS ICE SDK">
+
+    <title>JS ICE SDK</title>
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200,400,700,900|Lato:400,900">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.5/styles/tomorrow.min.css">
+
+    <link href="/css/theme.css" rel="stylesheet">
+    <!--<link href="/css/highlight-theme.css" rel="stylesheet">-->
+    <link href="/css/api-default.css" rel="stylesheet">
+    <link href="/css/portal.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+    <div class="container">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><i class="fa fa-chevron-left"></i>dpi<i class="fa fa-chevron-right"></i></a>
+        </div>
+
+        <div class="navbar-collapse collapse navbar-right">
+
+            <ul class="nav navbar-nav">
+
+                <!--<li class="active"><a href="index.html">HOME</a></li>-->
+                <!--<li><a href="#/login">Login</a></li>-->
+                <!--<li><a href="#/contact">Contact</a></li>-->
+                <li><a href="/about/">About</a></li>
+
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Docs <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a href="/docs">Doc Overview</a></li>
+                    
+                                <li role="presentation" class="divider"></li>
+                                <li class="dropdown-header">SDK</li>
+                            
+                                        
+                                        
+                                    
+                                                
+                                                
+                                            
+                                                        
+                                                        <li><a href="/docs/sdk/ice/android/v1"><i class="fa fa-android"></i> Android ICE SDK v1</a></li>
+                                                    
+                                                
+                                                
+                                            
+                                                        
+                                                        <li><a href="/docs/sdk/ice/ios/v1"><i class="fa fa-apple"></i> iOS ICE SDK v1</a></li>
+                                                    
+                                                
+                                                
+                                            
+                                                        
+                                                        <li><a href="/docs/sdk/ice/js/v1"><i class="fa fa-code"></i> JS ICE SDK v1</a></li>
+                                                    
+                                <li role="presentation" class="divider"></li>
+                                <li class="dropdown-header">API</li>
+                            
+                                        
+                                        
+                                    
+                                                
+                                                <li><a href="/docs/api/hapi/v1"><i class="fa fa-code"></i> Hopster API (HAPI) v1</a></li>
+                                            
+                                        
+                                        
+                                    
+                                                
+                                                <li><a href="/docs/api/ice/v2"><i class="fa fa-code"></i> Inmar Consumer Extension (ICE) API v2</a></li>
+                                            
+                    </ul>
+                </li>
+
+
+            </ul>
+
+        </div>
+    </div>
+</div>
+<div class="alert" role="alert"></div><div class="content container">
+    <div class="row">
+        <div class="col-md-10 col-md-push-1">
+            <pre><code class="hljs js"><span class="hljs-keyword">var</span> parser = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'a'</span>);
+    parser.href = <span class="hljs-string">"http://example.com:3000/pathname/?search=test#hash"</span>;
+    parser.protocol; <span class="hljs-comment">// =&gt; "http:"</span>
+    parser.hostname; <span class="hljs-comment">// =&gt; "example.com"</span>
+    parser.port;     <span class="hljs-comment">// =&gt; "3000"</span>
+    parser.pathname; <span class="hljs-comment">// =&gt; "/pathname/"</span>
+    parser.search;   <span class="hljs-comment">// =&gt; "?search=test"</span>
+    parser.hash;     <span class="hljs-comment">// =&gt; "#hash"</span>
+    parser.host;     <span class="hljs-comment">// =&gt; "example.com:3000"</span></code></pre>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <p class="copyright">&copy 2015 Developer Portal</p>
+</div>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/js/portal.js"></script>
+</body>
+</html>
