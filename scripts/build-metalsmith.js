@@ -10,6 +10,10 @@ var assets = require('metalsmith-assets');
 var metallic = require('metalsmith-metallic');
 var permalinks = require('metalsmith-permalinks');
 
+
+var aglio = require('./metalsmith/metalsmith-aglio');
+
+
 var handlebars = require('handlebars');
 handlebars.registerHelper('replace', function( string, to_replace, replacement ){
     return ( string || '' ).replace( to_replace, replacement || '' );
@@ -65,13 +69,13 @@ exports.build = function(dirname,assetsPath,cb){
     metalsmith
         .clean(true)
         .metadata(meta)
+        .use(aglio({template:'./scripts/convert-templates/apibp/api.jade'}))
         .use(metallic())
         .use(markdown())
         .use(assets(assetPaths))
         .use(permalinks({relative:false}))
         .use(filePathTask)
         .use(collections(collectionPaths))
-
         .use(createTrees)
         .use(templates('handlebars'))
         .build(cb);
