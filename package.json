@@ -1,0 +1,33 @@
+{
+  "name": "dpi",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Test static site implementation",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/spacious/dpi.git"
+  },
+  "devDependencies": {
+    "aglio": "^1.18.0",
+    "bootprint": "^0.4.6",
+    "bootprint-swagger": "^0.4.2",
+    "chalk": "^1.0.0",
+    "filewalker": "^0.1.2",
+    "gulp": "^3.8.11",
+    "gulp-connect": "^2.2.0",
+    "gulp-gh-pages": "^0.5.0",
+    "gulp-util": "^3.0.4",
+    "handlebars": "^3.0.1",
+    "jsonfile": "^2.0.0",
+    "metalsmith": "^1.5.0",
+    "metalsmith-assets": "^0.1.0",
+    "metalsmith-collections": "^0.7.0",
+    "metalsmith-markdown": "^0.2.1",
+    "metalsmith-metallic": "^0.3.1",
+    "metalsmith-navigation": "^0.1.0",
+    "metalsmith-permalinks": "^0.4.0",
+    "metalsmith-templates": "^0.7.0",
+    "minimatch": "^2.0.4",
+    "mkdirp": "^0.5.0"
+  }
+}

@@ -1,0 +1,712 @@
+---
+title: Hopster API (HAPI)
+version: 1
+date: 2015-04-07
+template: api.html
+platform: code
+---
+<div class="api"><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><div class="col-md-3"><nav id="nav" class="hidden-sm hidden-xs affix nav"><div class="list-group"><a data-toggle="" data-target="#session-menu" href="#session" class="list-group-item heading collapsed">Session</a><div id="session-menu"><a href="#session-current-session" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Current Session</a><a href="#session-anonymous-session" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Anonymous Session</a><a href="#session-partner-session" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Partner Session</a><a href="#session-email-session" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Email Session</a><a href="#session-facebook-session" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Facebook Session</a><a href="#session-sms-session" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>SMS Session</a></div></div><div class="list-group"><a data-toggle="" data-target="#user-menu" href="#user" class="list-group-item heading collapsed">User</a><div id="user-menu"><a href="#user-user" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">User</a><a href="#user-user-get" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span><span class="indent">Retrieve User</span></a><a href="#user-user-post" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span><span class="indent">Create User</span></a><a href="#user-user-cart" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>User Cart</a><a href="#user-email-user-cart" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Email User Cart</a><a href="#user-user-id" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item">User Id</a><a href="#user-user-id-get" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span><span class="indent">Retrieve User Id</span></a><a href="#user-user-id-post" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span><span class="indent">Create User Id</span></a><a href="#user-login" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Login</a><a href="#user-user-password" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>User Password</a><a href="#user-user-forgot-password" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>User Forgot Password</a><a href="#user-user-reset-password" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>User Reset Password</a><a href="#user-register" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Register</a><a href="#user-user-stats" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>User Stats</a><a href="#user-user-summary" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>User Summary</a></div></div><div class="list-group"><a data-toggle="" data-target="#offers-menu" href="#offers" class="list-group-item heading collapsed">Offers</a><div id="offers-menu"><a href="#offers-offers" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Offers</a><a href="#offers-categories" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Categories</a><a href="#offers-clip" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-success"><i class="fa fa-plus"></i></span>Clip</a><a href="#offers-recommend" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Recommend</a><a href="#offers-keywords" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Keywords</a></div></div><div class="list-group"><a data-toggle="" data-target="#print-menu" href="#print" class="list-group-item heading collapsed">Print</a><div id="print-menu"><a href="#print-startup-unrestricted" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Startup Unrestricted</a><a href="#print-startup-restricted" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Startup Restricted</a><a href="#print-print-page" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Print Page</a><a href="#print-info" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Info</a></div></div><div class="list-group"><a data-toggle="" data-target="#unlock-menu" href="#unlock" class="list-group-item heading collapsed">Unlock</a><div id="unlock-menu"><a href="#unlock-unlock" style="border-top-left-radius: 0; border-top-right-radius: 0" class="list-group-item"><span class="badge alert-info"><i class="fa fa-arrow-down"></i></span>Unlock</a></div></div><p style="text-align: center; word-wrap: break-word;"><a href="https://hapi.hopster.com">https://hapi.hopster.com</a></p></nav></div><div class="col-md-8"><div><header><div class="page-header"><h1 id="top">hAPI</h1></div></header><div class="description"><p>The scope of Hopster API is to:</p>
+<ul>
+<li><p>Manage users and their carts, identity and attendant metadata</p></li>
+<li><p>Generate a list of offers available to the current user</p></li>
+<li><p>Inject a print experience into a remote page</p></li>
+<li><p>Provide a mechanism to perform activities and unlock coupons</p></li>
+</ul>
+<p>High level use</p>
+<ul>
+<li><p>create a new <code>Session</code>, or new <code>User</code> (which will come with a new session)</p></li>
+<li><p>get <code>Offers</code></p></li>
+<li><p>unlock <code>Offers</code> by completing activities</p></li>
+<li><p>add offers to the <code>Cart</code> associated with the <code>Session</code></p></li>
+<li><p>print <code>Offers</code></p></li>
+</ul>
+</div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="session">Session&nbsp;<a href="#session"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>A session can be created for one of the following types of identities:</p>
+<ul>
+<li><p>Anonymous users, <code>type=anonymous</code> - A user who is not authenticated and whose session is identified by an unique token (uuid)</p></li>
+<li><p>Partner users, <code>type=partner</code> - Similar to anonymous users, but a partner/brand supplies the token</p></li>
+<li><p>SMS users, <code>type=sms</code> - A user who is authenticated via SMS and identified by their phone number</p></li>
+<li><p>Facebook users, <code>type=facebook</code> - A user who is authenticated by Facebook and identified by their Facebook user id</p></li>
+<li><p>Hopster users, <code>type=email</code> - A user who is authenticated by password and identified by email</p></li>
+</ul>
+<h4 id="session-current-session">Current Session&nbsp;<a href="#session-current-session"><i class="fa fa-link"></i></a></h4><p>A session can have the following attributes:</p>
+<ul>
+<li><p>uuid (string) - A uuid is always present.</p></li>
+<li><p>type (string) - One of the allowable session types</p></li>
+<li><p>email (string) - if type is email</p></li>
+<li><p>phone (string) - if type is sms</p></li>
+<li><p>facebook_id (number) - if type is Facebook</p></li>
+</ul>
+<section id="session-current-session-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">View current session details</span></div><div style="float:left"><a href="#session-current-session-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/sessions</code></div></div><div class="panel-body"><p>No parameters are used.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#eabd26fdf10ab9b2618dea74e9cd9718" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="eabd26fdf10ab9b2618dea74e9cd9718" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>{
+"<span class="hljs-attribute">uuid</span>": <span class="hljs-value"><span class="hljs-string">"1f8efcf8-cc87-40fc-9614-8bfae141198a"</span></span>,
+"<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"email"</span></span>,
+"<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"keith@hopster.com"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>404</code></strong><a data-toggle="collapse" data-target="#8e806de483316667684d7250a972a1cf" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="8e806de483316667684d7250a972a1cf" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre></li></ul></section><h4 id="session-anonymous-session">Anonymous Session&nbsp;<a href="#session-anonymous-session"><i class="fa fa-link"></i></a></h4><section id="session-anonymous-session-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create a new anonymous session</span></div><div style="float:left"><a href="#session-anonymous-session-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/sessions/anonymous</code></div></div><div class="panel-body"><p>Create an anonymous session, supplying an existing user_token if one exists.</p>
+<p>The resource accepts the following attributes:</p>
+<ul>
+<li><strong>user_token (optional, string)</strong> : if a user_token is supplied, the session will use it as the uuid</li>
+</ul>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#db8a3518feb4ea6199a4e9edcc22a030" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="db8a3518feb4ea6199a4e9edcc22a030" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>        {
+            "<span class="hljs-attribute">uuid</span>": <span class="hljs-value"><span class="hljs-string">"1f8efcf8-cc87-40fc-9614-8bfae141198a"</span></span>,
+            "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"anonymous"</span>
+        </span>}
+</code></pre></li></ul></section><h4 id="session-partner-session">Partner Session&nbsp;<a href="#session-partner-session"><i class="fa fa-link"></i></a></h4><p>Create a session where a trusted partner supplies the <code>user_token</code>.  We mitigate token collisions with a partner_prefix.</p>
+<section id="session-partner-session-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create a new partner session</span></div><div style="float:left"><a href="#session-partner-session-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/sessions/partner</code></div></div><div class="panel-body"><p>kxm: Do we want to validate (whitelist) partner_prefix values?  We currently associate them with partners in partner_attributes in the db.</p>
+<p>The resource accepts the following attributes:</p>
+<ul>
+<li><p><strong>user_token (optional, string)</strong> : if a user_token is supplied, the session will use it as the uuid</p></li>
+<li><p><strong>partner_prefix (required, string)</strong> : a per-partner string used to prevent user token collisions</p></li>
+</ul>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#07b6cadc81cf98f15a5eaac9fe6fd594" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="07b6cadc81cf98f15a5eaac9fe6fd594" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>    {
+        "<span class="hljs-attribute">partner_prefix</span>": <span class="hljs-value"><span class="hljs-string">"syn"</span></span>,
+        "<span class="hljs-attribute">uuid</span>": <span class="hljs-value"><span class="hljs-string">"d34b989f-4ebd-4b9f-a532-553824a724ac"</span>
+    </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#14b79c2891d0f2a3d81da35355519094" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="14b79c2891d0f2a3d81da35355519094" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>        {
+          "<span class="hljs-attribute">uuid</span>": <span class="hljs-value"><span class="hljs-string">"syn:d34b989f-4ebd-4b9f-a532-553824a724ac"</span></span>,
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"partner"</span>
+        </span>}
+</code></pre></li></ul></section><h4 id="session-email-session">Email Session&nbsp;<a href="#session-email-session"><i class="fa fa-link"></i></a></h4><p>Create a session using email and password parameters.  This is traditional Hopster account type.</p>
+<section id="session-email-session-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create a new email session</span></div><div style="float:left"><a href="#session-email-session-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/sessions/email</code></div></div><div class="panel-body"><p>The resource accepts the following attributes:</p>
+<ul>
+<li><p><strong>email (required, string)</strong> : the email</p></li>
+<li><p><strong>password (required, string)</strong> : the password</p></li>
+</ul>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#bf2647da5febdaf18c074265fcfd6500" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="bf2647da5febdaf18c074265fcfd6500" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>    {
+        "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"keith@hopster.com"</span></span>,
+        "<span class="hljs-attribute">password</span>": <span class="hljs-value"><span class="hljs-string">"super secret plain text password"</span>
+    </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#00a254ca2caa8618ac3fbaf9e08b9850" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="00a254ca2caa8618ac3fbaf9e08b9850" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>        {
+          "<span class="hljs-attribute">uuid</span>": <span class="hljs-value"><span class="hljs-string">"d34b989f-4ebd-4b9f-a532-553824a724ac"</span></span>,
+          "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"keith@hopster.com"</span></span>,
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"email"</span>
+        </span>}
+</code></pre></li></ul></section><h4 id="session-facebook-session">Facebook Session&nbsp;<a href="#session-facebook-session"><i class="fa fa-link"></i></a></h4><p>Create a session using a Facebook user id, as obtained from <code>FB.login()</code> and <code>response.authResponse.userID</code>.  These connect to <code>email</code> sessions.</p>
+<section id="session-facebook-session-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create a new Facebook session</span></div><div style="float:left"><a href="#session-facebook-session-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/sessions/facebook</code></div></div><div class="panel-body"><p>The resource accepts the following attributes:</p>
+<ul>
+<li><strong>facebook_user_id (required, number)</strong> : the Facebook userID</li>
+</ul>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#a5a2830eb2bd40fa4ef47d692dc34f5b" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="a5a2830eb2bd40fa4ef47d692dc34f5b" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>    {
+        "<span class="hljs-attribute">facebook_user_id</span>": <span class="hljs-value"><span class="hljs-number">100004307711879</span>
+    </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#2fb258e9ee533d2c88f30877e1a55df0" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="2fb258e9ee533d2c88f30877e1a55df0" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>        {
+          "<span class="hljs-attribute">uuid</span>": <span class="hljs-value"><span class="hljs-string">"d34b989f-4ebd-4b9f-a532-553824a724ac"</span></span>,
+          "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"keith@hopster.com"</span></span>,
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"email"</span>
+        </span>}
+</code></pre></li></ul></section><h4 id="session-sms-session">SMS Session&nbsp;<a href="#session-sms-session"><i class="fa fa-link"></i></a></h4><p>Create a session using a phone number obtained through SMS validation.</p>
+<section id="session-sms-session-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create a new SMS session</span></div><div style="float:left"><a href="#session-sms-session-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/sessions/sms</code></div></div><div class="panel-body"><p>The resource accepts the following attributes:</p>
+<ul>
+<li><strong>phone_number (required, string)</strong> : the U.S. centric phone number, ie: 17728124834</li>
+</ul>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#debf8765aa91b95321da832365fbe5d2" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="debf8765aa91b95321da832365fbe5d2" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>    {
+        "<span class="hljs-attribute">phone_number</span>": <span class="hljs-value"><span class="hljs-string">"17728124834"</span>
+    </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#581c961c1c9e6e1353874ac1308e22af" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="581c961c1c9e6e1353874ac1308e22af" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>        {
+          "<span class="hljs-attribute">uuid</span>": <span class="hljs-value"><span class="hljs-string">"sms:17728124834"</span></span>,
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"sms"</span>
+        </span>}
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="user">User&nbsp;<a href="#user"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>Resources for users.</p>
+<h4 id="user-user">User&nbsp;<a href="#user-user"><i class="fa fa-link"></i></a></h4><section id="user-user-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve User</span></div><div style="float:left"><a href="#user-user-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/user</code></div></div><div class="panel-body"><p>This request has no parameters.</p>
+<p>The <code>X-Auth-Token</code> header is required.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#7d78b989102281c6a184ed86b9bb4e8e" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="7d78b989102281c6a184ed86b9bb4e8e" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#4dbff9d04d89b59260eb7c13fbaababe" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="4dbff9d04d89b59260eb7c13fbaababe" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">postal_code</span>": <span class="hljs-value"><span class="hljs-number">43402</span></span>,
+    "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"John"</span></span>,
+    "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Customer"</span></span>,
+    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"john.q@customer.com"</span></span>,
+    "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"555-555-1212"</span></span>,
+    "<span class="hljs-attribute">metadata</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">email_optin</span>": <span class="hljs-value"><span class="hljs-string">"none"</span>
+    </span>}</span>,
+}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>401</code></strong><a data-toggle="collapse" data-target="#03d7e87e1bd8afbf507402d283b50054" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="03d7e87e1bd8afbf507402d283b50054" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Token <span class="hljs-keyword">is</span> invalid
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#457dee003406502e4e6639f5a92b8bd8" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="457dee003406502e4e6639f5a92b8bd8" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code><span class="hljs-title">Some</span> other <span class="hljs-built_in">error</span> occurred, DPN service likely unavailable
+</code></pre></li></ul></section><section id="user-user-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create User</span></div><div style="float:left"><a href="#user-user-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/user</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#078e2774a3da09ccda16ce85ef5a5a47" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="078e2774a3da09ccda16ce85ef5a5a47" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">postal_code</span>": <span class="hljs-value"><span class="hljs-number">43402</span></span>,
+    "<span class="hljs-attribute">first_name</span>": <span class="hljs-value"><span class="hljs-string">"John"</span></span>,
+    "<span class="hljs-attribute">last_name</span>": <span class="hljs-value"><span class="hljs-string">"Customer"</span></span>,
+    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"john.q@customer.com"</span></span>,
+    "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"555-555-1212"</span></span>,
+    "<span class="hljs-attribute">metadata</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">email_optin</span>": <span class="hljs-value"><span class="hljs-string">"none"</span>
+    </span>}</span>,
+}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#32385321a6b680b9d3181d1843809261" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="32385321a6b680b9d3181d1843809261" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Input XML <span class="hljs-keyword">is</span> <span class="hljs-keyword">empty</span> <span class="hljs-keyword">or</span> malformed.
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#4a8205bf4a3c3050b6d17245b778e911" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="4a8205bf4a3c3050b6d17245b778e911" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code><span class="hljs-keyword">An</span> unexpected <span class="hljs-keyword">error</span> has occurred: {x}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#fefec6c0a58309c9a0bf233448e3f75f" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="fefec6c0a58309c9a0bf233448e3f75f" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Missing required <span class="hljs-built_in">tag</span> <span class="hljs-string">'Name'</span><span class="hljs-built_in">.
+</span></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>409</code></strong><a data-toggle="collapse" data-target="#c182d3a0ed4e8676605438056848e000" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="c182d3a0ed4e8676605438056848e000" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>A customer <span class="hljs-keyword">with</span> <span class="hljs-keyword">this</span> Phone <span class="hljs-built_in">number</span> already exists.
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>409</code></strong><a data-toggle="collapse" data-target="#940c304f3a296f6ef5cef6ef84c07573" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="940c304f3a296f6ef5cef6ef84c07573" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>A customer <span class="hljs-keyword">with</span> <span class="hljs-keyword">this</span> Alternate ID already exists.
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>409</code></strong><a data-toggle="collapse" data-target="#47c0504ec17f90b3c2c2712ac7c2992c" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="47c0504ec17f90b3c2c2712ac7c2992c" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>A customer <span class="hljs-keyword">with</span> <span class="hljs-keyword">this</span> Email already exists.
+</code></pre></li></ul></section><h4 id="user-user-cart">User Cart&nbsp;<a href="#user-user-cart"><i class="fa fa-link"></i></a></h4><section id="user-user-cart-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve User Cart</span></div><div style="float:left"><a href="#user-user-cart-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/user/cart</code></div></div><div class="panel-body"><p>Synonymous with passing <code>clipped=true</code> to <a href="#offers-get">Offers [GET]</a></p>
+<p>This request has no parameters.</p>
+<p>The <code>X-Auth-Token</code> header is required.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#d2fbb7f9242d81b0092f765f7d9c7017" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="d2fbb7f9242d81b0092f765f7d9c7017" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#1c3a202cfcbc8d2348d67e23d11f1348" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="1c3a202cfcbc8d2348d67e23d11f1348" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>[
+    {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">40633</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"mfg"</span></span>,
+        "<span class="hljs-attribute">badge</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+        "<span class="hljs-attribute">clipped</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+        "<span class="hljs-attribute">redeemedDate</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+        "<span class="hljs-attribute">category</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"c2ztS9Kuoz"</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Grocery"</span></span>,
+            "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+            "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-number">300</span></span>,
+            "<span class="hljs-attribute">key</span>": <span class="hljs-value"><span class="hljs-string">"grocery"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">brand</span>": <span class="hljs-value"><span class="hljs-string">"ConAgra Foods"</span></span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Save $0.75 on Hunt's Ketchup�. Offer redeemed with valid in-store purchase."</span></span>,
+        "<span class="hljs-attribute">shortDescription</span>": <span class="hljs-value"><span class="hljs-string">"Save $0.75 on Hunt's Ketchup�"</span></span>,
+        "<span class="hljs-attribute">imageUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://d17qf54098xvyo.cloudfront.net/INTEGRATION/imageserver/cecd82efed312f421b019730f7043376-69047-20141126-13462120150212101346_965231_0.jpg"</span></span>,
+        "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-number">75</span></span>,
+        "<span class="hljs-attribute">valueText</span>": <span class="hljs-value"><span class="hljs-string">"save $0.75"</span></span>,
+        "<span class="hljs-attribute">terms</span>": <span class="hljs-value"><span class="hljs-string">"LIMIT ONE COUPON REDEMPTION PER IN-STORE PURCHASE. ANY OTHER USE CONSTITUTES FRAUD. Void if sold, copied, transferred, altered, prohibited or restricted. Good only in the USA. CONSUMER: No other coupon may be used with this coupon. Consumer pays any sales tax and will not receive any credit or cash back if coupon value exceeds purchase price. Cash value of 1/20�. �INmart, Inc. All Rights Reserved."</span></span>,
+        "<span class="hljs-attribute">minPurchase</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+        "<span class="hljs-attribute">offerSortValue</span>": <span class="hljs-value"><span class="hljs-string">"75"</span></span>,
+        "<span class="hljs-attribute">expirationDate</span>": <span class="hljs-value"><span class="hljs-string">"2017-02-12T00:00:00.000Z"</span></span>,
+        "<span class="hljs-attribute">clipStartDate</span>": <span class="hljs-value"><span class="hljs-string">"2015-02-12T00:00:00.000Z"</span></span>,
+        "<span class="hljs-attribute">clipEndDate</span>": <span class="hljs-value"><span class="hljs-string">"2017-02-12T00:00:00.000Z"</span>
+    </span>}
+]
+</code></pre><h5>Schema</h5><pre><code>{
+    "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+    "<span class="hljs-attribute">items</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Offers"</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+        "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">enum</span>": <span class="hljs-value">[<span class="hljs-string">"store"</span>, <span class="hljs-string">"mfg"</span>]
+            </span>}</span>,
+            "<span class="hljs-attribute">badge</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">enum</span>": <span class="hljs-value">[<span class="hljs-string">""</span>, <span class="hljs-string">"store"</span>, <span class="hljs-string">"mfg"</span>]
+            </span>}</span>,
+            "<span class="hljs-attribute">clipped</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">redeemedDate</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+                "<span class="hljs-attribute">format</span>": <span class="hljs-value"><span class="hljs-string">"date-time"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">category</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">brand</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">shortDescription</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">imageUrl</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+                "<span class="hljs-attribute">format</span>": <span class="hljs-value"><span class="hljs-string">"uri"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">value</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">terms</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">minPurchase</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">offerSortValue</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">expirationDate</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+                "<span class="hljs-attribute">format</span>": <span class="hljs-value"><span class="hljs-string">"date-time"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">clipStartDate</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+                "<span class="hljs-attribute">format</span>": <span class="hljs-value"><span class="hljs-string">"date-time"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">clipEndDate</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+                "<span class="hljs-attribute">format</span>": <span class="hljs-value"><span class="hljs-string">"date-time"</span>
+            </span>}
+        </span>}
+    </span>}
+</span>}
+</code></pre></li></ul></section><h4 id="user-email-user-cart">Email User Cart&nbsp;<a href="#user-email-user-cart"><i class="fa fa-link"></i></a></h4><p>Send the user an email of their offers.</p>
+<section id="user-email-user-cart-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Send User Cart Email</span></div><div style="float:left"><a href="#user-email-user-cart-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/user/cart/email</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#14ff95af485d724604671e4f7f11b89b" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="14ff95af485d724604671e4f7f11b89b" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"john.q@customer.com"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#03e37e9f423697723c1f7cd953b320fc" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="03e37e9f423697723c1f7cd953b320fc" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"john.q@customer.com"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#079817e58f2cf2da27e2e50b45449066" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="079817e58f2cf2da27e2e50b45449066" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code><span class="hljs-title">Bad</span> Request
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#2e4d53aa2e760ec4e87e76716dde26a4" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="2e4d53aa2e760ec4e87e76716dde26a4" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code><span class="hljs-title">Some</span> other <span class="hljs-built_in">error</span> occurred, DPN service likely unavailable
+</code></pre></li></ul></section><h4 id="user-user-id">User Id&nbsp;<a href="#user-user-id"><i class="fa fa-link"></i></a></h4><section id="user-user-id-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve User Id</span></div><div style="float:left"><a href="#user-user-id-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/user/id</code></div></div><div class="panel-body"><p>This request has no parameters.</p>
+<p>The <code>X-Auth-Token</code> header is required.</p>
+<p>Response differs by retailer &quot;type&quot;:</p>
+<ul>
+<li><p><em>username</em> based retailers return object with <code>username</code>:</p>
+<pre><code>  { &quot;username&quot; : &quot;john.q@customer.com&quot; }
+</code></pre></li>
+<li><p><em>Phone</em> based retailers return object with <code>phone</code>:</p>
+<pre><code>  { &quot;phone&quot; : &quot;555-555-1212&quot; }
+</code></pre></li>
+</ul>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#8808fec9103ab13cae3b4d5796c7564d" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="8808fec9103ab13cae3b4d5796c7564d" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#22abc8289e40c011dbbd0f1203fcc6c3" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="22abc8289e40c011dbbd0f1203fcc6c3" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>{ "<span class="hljs-attribute">username</span>" : <span class="hljs-value"><span class="hljs-string">"john.q@customer.com"</span> </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#867e0c3a3b91f4acca834035d64cb7a9" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="867e0c3a3b91f4acca834035d64cb7a9" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>{ "<span class="hljs-attribute">phone</span>" : <span class="hljs-value"><span class="hljs-string">"555-555-1212"</span> </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>401</code></strong><a data-toggle="collapse" data-target="#b5ba505fcad8a986cf12b28efc31559f" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="b5ba505fcad8a986cf12b28efc31559f" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Token <span class="hljs-keyword">is</span> invalid
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#b0232b8c5b09cb437609a3ad9d0b561f" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="b0232b8c5b09cb437609a3ad9d0b561f" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code><span class="hljs-title">Some</span> other <span class="hljs-built_in">error</span> occurred, DPN service likely unavailable
+</code></pre></li></ul></section><section id="user-user-id-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Create User Id</span></div><div style="float:left"><a href="#user-user-id-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/user/id</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#1113339da6f3e450627da89aed51303e" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="1113339da6f3e450627da89aed51303e" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">userId</span>": <span class="hljs-value"><span class="hljs-string">"c2ztS9Kuoz"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#38b5af696945a8f38b599c0f986202eb" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="38b5af696945a8f38b599c0f986202eb" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>{ "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"exampletoken"</span> </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>401</code></strong><a data-toggle="collapse" data-target="#e65214262a58a79ff9d9d956c62040d5" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="e65214262a58a79ff9d9d956c62040d5" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Token <span class="hljs-keyword">is</span> invalid
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#99f1a44c0066aa8777a6dac896c145d3" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="99f1a44c0066aa8777a6dac896c145d3" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code><span class="hljs-title">Some</span> other <span class="hljs-built_in">error</span> occurred, DPN service likely unavailable
+</code></pre></li></ul></section><h4 id="user-login">Login&nbsp;<a href="#user-login"><i class="fa fa-link"></i></a></h4><section id="user-login-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Login User</span></div><div style="float:left"><a href="#user-login-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/user/login</code></div></div><div class="panel-body"><p><code>Origin</code> header is required for this request.</p>
+<p>The Login resource has the following attributes:</p>
+<ul>
+<li><p><strong>username (required, string)</strong> : Depending on system implementation, <code>username</code> is either an email address or phone number</p></li>
+<li><p><strong>password (required, string)</strong> : clear-text password</p></li>
+</ul>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#692a1dcd83cfebf26952d9d1c8550b5b" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="692a1dcd83cfebf26952d9d1c8550b5b" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/><span class="hljs-attribute">Origin</span>: <span class="hljs-string">http://www.example-social-network.com</span><br/></code></pre><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+  "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Login User"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">username</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+        "<span class="hljs-attribute">minLength</span>": <span class="hljs-value"><span class="hljs-number">4</span>
+      </span>}</span>,
+      "<span class="hljs-attribute">password</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+        "<span class="hljs-attribute">minLength</span>": <span class="hljs-value"><span class="hljs-number">4</span>
+      </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">required</span>": <span class="hljs-value">[<span class="hljs-string">"username"</span>, <span class="hljs-string">"password"</span>]
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#5361b68dd166eab2e8b083b665ba19ab" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="5361b68dd166eab2e8b083b665ba19ab" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>Response is <span class="hljs-operator">a</span> <span class="hljs-keyword">token</span> which should be used <span class="hljs-keyword">for</span> <span class="hljs-keyword">any</span> subsequent contextual user API calls.
+
+{ <span class="hljs-string">"token"</span>: <span class="hljs-string">"exampletoken"</span> }
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>401</code></strong><a data-toggle="collapse" data-target="#e2f1b789d209114196aa7e88843e994c" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="e2f1b789d209114196aa7e88843e994c" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code><span class="hljs-constant">Login</span> failed; <span class="hljs-keyword">user</span> <span class="hljs-keyword">or</span> <span class="hljs-literal">password</span> is invalid
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#017410e3ee18bc1dab7d76d15d8d37a9" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="017410e3ee18bc1dab7d76d15d8d37a9" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code><span class="hljs-title">Some</span> other <span class="hljs-built_in">error</span> occurred, DPN service likely unavailable
+</code></pre></li></ul></section><h4 id="user-user-password">User Password&nbsp;<a href="#user-user-password"><i class="fa fa-link"></i></a></h4><section id="user-user-password-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Update User Password</span></div><div style="float:left"><a href="#user-user-password-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/user/password</code></div></div><div class="panel-body"><p>The User Password resource has the following attributes:</p>
+<ul>
+<li><p><strong>current (required, string)</strong> : current password of user</p></li>
+<li><p><strong>updated (required, string)</strong> : new password of user</p></li>
+</ul>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#0efc2420fd418af2795eb7c6765ca6e3" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="0efc2420fd418af2795eb7c6765ca6e3" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">current</span>": <span class="hljs-value"><span class="hljs-string">"123456789"</span></span>,
+    "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"c2ztS9Kuoz"</span></span>,
+}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#7392c9bebab0dadd8ef8fef6a916cbbb" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="7392c9bebab0dadd8ef8fef6a916cbbb" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>{ "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"exampletoken"</span> </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#5084a2f035af6032fb6201c63141331b" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="5084a2f035af6032fb6201c63141331b" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Bad <span class="hljs-tag">input</span> paramter
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>401</code></strong><a data-toggle="collapse" data-target="#2572cb8d43bc765b68746e07c7bf4a73" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="2572cb8d43bc765b68746e07c7bf4a73" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Token <span class="hljs-keyword">is</span> invalid
+</code></pre></li></ul></section><h4 id="user-user-forgot-password">User Forgot Password&nbsp;<a href="#user-user-forgot-password"><i class="fa fa-link"></i></a></h4><p>Sends an e-mail to the account holder with instructions and a link to reset their password.</p>
+<section id="user-user-forgot-password-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">User Forgot Password</span></div><div style="float:left"><a href="#user-user-forgot-password-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/user/password/forgot</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#4dfbf5c74e2fa11eaff17151841c33e7" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="4dfbf5c74e2fa11eaff17151841c33e7" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>{"<span class="hljs-attribute">email</span>": <span class="hljs-value"><span class="hljs-string">"john.q@customer.com"</span></span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#d5cdbdd45deb7c91d25e08da53187619" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="d5cdbdd45deb7c91d25e08da53187619" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>No response; sends <span class="hljs-operator">an</span> e-mail <span class="hljs-built_in">to</span> <span class="hljs-operator">the</span> account holder <span class="hljs-operator">with</span> instructions <span class="hljs-operator">and</span> <span class="hljs-operator">a</span> link <span class="hljs-built_in">to</span> reset their password.
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#4a7c1c7cfbf3a00483284651b4199d3a" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="4a7c1c7cfbf3a00483284651b4199d3a" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Bad <span class="hljs-tag">input</span> paramter
+</code></pre></li></ul></section><h4 id="user-user-reset-password">User Reset Password&nbsp;<a href="#user-user-reset-password"><i class="fa fa-link"></i></a></h4><section id="user-user-reset-password-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">User Reset Password</span></div><div style="float:left"><a href="#user-user-reset-password-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/user/password/reset</code></div></div><div class="panel-body"><p><code>Origin</code> and <code>X-Reset-Token</code> headers are required for this request.</p>
+<p>The User Password resource has the following attributes:</p>
+<ul>
+<li><strong>updated (required, string)</strong> : new password of user</li>
+</ul>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#7d11f8ff8620758159c85dee1fdd8b08" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="7d11f8ff8620758159c85dee1fdd8b08" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Origin</span>: <span class="hljs-string">http://www.example-social-network.com</span><br/><span class="hljs-attribute">X-Reset-Token</span>: <span class="hljs-string">resetmetoken</span><br/></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">updated</span>": <span class="hljs-value"><span class="hljs-string">"c2ztS9Kuoz"</span></span>,
+}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#288abf113984321db1ec66c719906734" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="288abf113984321db1ec66c719906734" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>{ "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"exampletoken"</span> </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#9140c534b4af777fc3dcf543cc72b695" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="9140c534b4af777fc3dcf543cc72b695" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code><span class="hljs-title">Invalid</span> / Expired Token
+</code></pre></li></ul></section><h4 id="user-register">Register&nbsp;<a href="#user-register"><i class="fa fa-link"></i></a></h4><p><code>username</code> can be an email address or phone number.</p>
+<section id="user-register-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Register User</span></div><div style="float:left"><a href="#user-register-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/user/register</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#5a44b3d9c453896b1301ff8f9f8fed75" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="5a44b3d9c453896b1301ff8f9f8fed75" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+  "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Register User"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">username</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+      </span>}</span>,
+      "<span class="hljs-attribute">password</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+        "<span class="hljs-attribute">minLength</span>": <span class="hljs-value"><span class="hljs-number">4</span>
+      </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">required</span>": <span class="hljs-value">[<span class="hljs-string">"username"</span>, <span class="hljs-string">"password"</span>]
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#9fa238f5ef98d9da79406bd49deb4cd4" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="9fa238f5ef98d9da79406bd49deb4cd4" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>{ "<span class="hljs-attribute">token</span>": <span class="hljs-value"><span class="hljs-string">"exampletoken"</span> </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>401</code></strong><a data-toggle="collapse" data-target="#721687362521ced583c3affc49843870" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="721687362521ced583c3affc49843870" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code><span class="hljs-constant">Missing</span> either username, <span class="hljs-literal">password</span>, <span class="hljs-keyword">or</span> email
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#9177f98771b52a7643ac39ece179d92d" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="9177f98771b52a7643ac39ece179d92d" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code><span class="hljs-constant">Login</span> failed; <span class="hljs-keyword">user</span> <span class="hljs-keyword">or</span> <span class="hljs-literal">password</span> is invalid
+</code></pre></li></ul></section><h4 id="user-user-stats">User Stats&nbsp;<a href="#user-user-stats"><i class="fa fa-link"></i></a></h4><section id="user-user-stats-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve User Stats</span></div><div style="float:left"><a href="#user-user-stats-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/user/stats</code></div></div><div class="panel-body"><p>This request has no parameters.</p>
+<p>The <code>X-Auth-Token</code> header is required.</p>
+<p>The response object may or may not contain all these parameters depending on what statistics are available for user.</p>
+<p><strong>Normal Response:</strong></p>
+<pre><code>{
+    &quot;savingsThisYear&quot;: 10050,
+    &quot;savingsLastTwelveMonths&quot;: 40200,
+    &quot;lifetimeSavings&quot;: 76525,
+    &quot;averageMonthlySavings&quot;: 3375,
+    &quot;rank&quot;: 15,
+    &quot;saverType&quot;: &quot;bottom&quot;,
+    &quot;recommended&quot;: {
+        &quot;missed&quot;: 65,
+        &quot;expired&quot;: 65
+    },
+    &quot;monthlySavings&quot;: [
+        {
+            &quot;month&quot;: 1,
+            &quot;value&quot;: 3375,
+            &quot;year&quot;: 2014
+        },
+        {
+            &quot;month&quot;: 2,
+            &quot;value&quot;: 2433,
+            &quot;year&quot;: 2014
+        },
+        {
+            &quot;month&quot;: 3,
+            &quot;value&quot;: 4100,
+            &quot;year&quot;: 2014
+        },
+        {
+            &quot;month&quot;: 4,
+            &quot;value&quot;: 4673,
+            &quot;year&quot;: 2014
+        },
+        {
+            &quot;month&quot;: 5,
+            &quot;value&quot;: 3375,
+            &quot;year&quot;: 2014
+        }
+    ],
+    &quot;updatedDate&quot;: &quot;2014-06-26T16:41:00.007Z&quot;
+}
+</code></pre>
+<p><strong>Minimum Response (No analytics for the user):</strong></p>
+<pre><code>{ &quot;lifetimeSavings&quot;: 0 }
+</code></pre>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#b2ed70c806564665631c402df2d6834d" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="b2ed70c806564665631c402df2d6834d" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#c57f67ae18a6eec98847198f940c34f6" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="c57f67ae18a6eec98847198f940c34f6" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>    {
+        "<span class="hljs-attribute">savingsThisYear</span>": <span class="hljs-value"><span class="hljs-number">10050</span></span>,
+        "<span class="hljs-attribute">savingsLastTwelveMonths</span>": <span class="hljs-value"><span class="hljs-number">40200</span></span>,
+        "<span class="hljs-attribute">lifetimeSavings</span>": <span class="hljs-value"><span class="hljs-number">76525</span></span>,
+        "<span class="hljs-attribute">averageMonthlySavings</span>": <span class="hljs-value"><span class="hljs-number">3375</span></span>,
+        "<span class="hljs-attribute">rank</span>": <span class="hljs-value"><span class="hljs-number">15</span></span>,
+        "<span class="hljs-attribute">saverType</span>": <span class="hljs-value"><span class="hljs-string">"bottom"</span></span>,
+        "<span class="hljs-attribute">recommended</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">missed</span>": <span class="hljs-value"><span class="hljs-number">65</span></span>,
+            "<span class="hljs-attribute">expired</span>": <span class="hljs-value"><span class="hljs-number">65</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">monthlySavings</span>": <span class="hljs-value">[
+        {
+            "<span class="hljs-attribute">month</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+            "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-number">3375</span></span>,
+            "<span class="hljs-attribute">year</span>": <span class="hljs-value"><span class="hljs-number">2014</span>
+        </span>},
+        {
+            "<span class="hljs-attribute">month</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+            "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-number">2433</span></span>,
+            "<span class="hljs-attribute">year</span>": <span class="hljs-value"><span class="hljs-number">2014</span>
+        </span>},
+        {
+            "<span class="hljs-attribute">month</span>": <span class="hljs-value"><span class="hljs-number">3</span></span>,
+            "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-number">4100</span></span>,
+            "<span class="hljs-attribute">year</span>": <span class="hljs-value"><span class="hljs-number">2014</span>
+        </span>},
+        {
+            "<span class="hljs-attribute">month</span>": <span class="hljs-value"><span class="hljs-number">4</span></span>,
+            "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-number">4673</span></span>,
+            "<span class="hljs-attribute">year</span>": <span class="hljs-value"><span class="hljs-number">2014</span>
+        </span>},
+        {
+            "<span class="hljs-attribute">month</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+            "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-number">3375</span></span>,
+            "<span class="hljs-attribute">year</span>": <span class="hljs-value"><span class="hljs-number">2014</span>
+        </span>}
+    ]</span>,
+    "<span class="hljs-attribute">updatedDate</span>": <span class="hljs-value"><span class="hljs-string">"2014-06-26T16:41:00.007Z"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#290e83841180473c479b511262278682" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="290e83841180473c479b511262278682" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>    { "<span class="hljs-attribute">lifetimeSavings</span>": <span class="hljs-value"><span class="hljs-number">0</span> </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>401</code></strong><a data-toggle="collapse" data-target="#a5dd85c384c0e6aac9a4567f764b3660" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="a5dd85c384c0e6aac9a4567f764b3660" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Token <span class="hljs-keyword">is</span> invalid
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#ee852acb2d105bdbde59ee3e0405422e" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="ee852acb2d105bdbde59ee3e0405422e" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code><span class="hljs-title">An</span> unexpected <span class="hljs-built_in">error</span> has occurred
+</code></pre></li></ul></section><h4 id="user-user-summary">User Summary&nbsp;<a href="#user-user-summary"><i class="fa fa-link"></i></a></h4><section id="user-user-summary-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve User Summary</span></div><div style="float:left"><a href="#user-user-summary-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/user/summary</code></div></div><div class="panel-body"><p>This request has no parameters.</p>
+<p>The <code>X-Auth-Token</code> header is required.</p>
+<p>The User Summary resource has the following attributes:</p>
+<ul>
+<li><p><strong>clipped_count (integer)</strong> : number of user’s clipped offers</p></li>
+<li><p><strong>clipped_value (number)</strong> : total value of user’s clipped offers</p></li>
+<li><p><strong>profileComplete (boolean)</strong> : whether or not user has completed their profile</p></li>
+</ul>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#e944d189319e9d9fe332feea149ebb2c" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="e944d189319e9d9fe332feea149ebb2c" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#a21f619585edffc26b9199218d44cee7" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="a21f619585edffc26b9199218d44cee7" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>    {
+        "<span class="hljs-attribute">clipped_count</span>": <span class="hljs-value"><span class="hljs-number">78</span></span>,
+        "<span class="hljs-attribute">clipped_value</span>": <span class="hljs-value"><span class="hljs-number">65.02</span>
+        <span class="hljs-string">"profileComplete"</span> : <span class="hljs-literal">true</span>
+    </span>}
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="offers">Offers&nbsp;<a href="#offers"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="offers-offers">Offers&nbsp;<a href="#offers-offers"><i class="fa fa-link"></i></a></h4><section id="offers-offers-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve Offers</span></div><div style="float:left"><a href="#offers-offers-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/offers{?skip,clipped,keywords,limit,categories,sort,redeemed,expired,includeClipped}</code></div></div><div class="panel-body"><p><a name="offers-get"></a></p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>skip</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<p>skip specified number of offers</p>
+</dd><dt>clipped</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<p>set to <code>true</code> to return a user’s clipped offers only</p>
+</dd><dt>keywords</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>baby,food</span></span><p>a comma delimited list of keywords to search offers for</p>
+</dd><dt>limit</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-info default"><strong>Default:&nbsp;</strong><span>12</span></span>&nbsp;<p>limit to n number of offers</p>
+</dd><dt>categories</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>comma delimited list of category keys, default is offers from all categories</p>
+</dd><dt>sort</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<p>string for sort order, one of the following values</p>
+<p><strong>Choices:&nbsp;</strong><code>asc</code> <code>desc</code> <code>store</code> <code>mfg</code> </p></dd><dt>redeemed</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<p>set to <code>true</code> to retrieve a user’s redeemed offers
+token must also be set. <strong>clipped/expired must not be set</strong> - sets redeemedDate JSON element for date redeemed (null otherwise)</p>
+</dd><dt>expired</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<p>set to <code>true</code> to retrieve a user’s expired offers
+token must also be set. <strong>clipped/redeemed must not be set</strong></p>
+</dd><dt>includeClipped</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<p>set to <code>false</code> to exclude clipped offers
+overrides clipped</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#b65bee22f95b76db392cc7de25fb7783" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="b65bee22f95b76db392cc7de25fb7783" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#9cf1b33ca82cb839e48212655a0d8786" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="9cf1b33ca82cb839e48212655a0d8786" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>[
+    {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">40633</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"mfg"</span></span>,
+        "<span class="hljs-attribute">badge</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+        "<span class="hljs-attribute">clipped</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+        "<span class="hljs-attribute">redeemedDate</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+        "<span class="hljs-attribute">category</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"c2ztS9Kuoz"</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Grocery"</span></span>,
+            "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+            "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-number">300</span></span>,
+            "<span class="hljs-attribute">key</span>": <span class="hljs-value"><span class="hljs-string">"grocery"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">brand</span>": <span class="hljs-value"><span class="hljs-string">"ConAgra Foods"</span></span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Save $0.75 on Hunt's Ketchup�. Offer redeemed with valid in-store purchase."</span></span>,
+        "<span class="hljs-attribute">shortDescription</span>": <span class="hljs-value"><span class="hljs-string">"Save $0.75 on Hunt's Ketchup�"</span></span>,
+        "<span class="hljs-attribute">imageUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://d17qf54098xvyo.cloudfront.net/INTEGRATION/imageserver/cecd82efed312f421b019730f7043376-69047-20141126-13462120150212101346_965231_0.jpg"</span></span>,
+        "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-number">75</span></span>,
+        "<span class="hljs-attribute">valueText</span>": <span class="hljs-value"><span class="hljs-string">"save $0.75"</span></span>,
+        "<span class="hljs-attribute">terms</span>": <span class="hljs-value"><span class="hljs-string">"LIMIT ONE COUPON REDEMPTION PER IN-STORE PURCHASE. ANY OTHER USE CONSTITUTES FRAUD. Void if sold, copied, transferred, altered, prohibited or restricted. Good only in the USA. CONSUMER: No other coupon may be used with this coupon. Consumer pays any sales tax and will not receive any credit or cash back if coupon value exceeds purchase price. Cash value of 1/20�. �INmart, Inc. All Rights Reserved."</span></span>,
+        "<span class="hljs-attribute">minPurchase</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+        "<span class="hljs-attribute">offerSortValue</span>": <span class="hljs-value"><span class="hljs-string">"75"</span></span>,
+        "<span class="hljs-attribute">expirationDate</span>": <span class="hljs-value"><span class="hljs-string">"2017-02-12T00:00:00.000Z"</span></span>,
+        "<span class="hljs-attribute">clipStartDate</span>": <span class="hljs-value"><span class="hljs-string">"2015-02-12T00:00:00.000Z"</span></span>,
+        "<span class="hljs-attribute">clipEndDate</span>": <span class="hljs-value"><span class="hljs-string">"2017-02-12T00:00:00.000Z"</span>
+    </span>}
+]
+</code></pre><h5>Schema</h5><pre><code>{
+    "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+    "<span class="hljs-attribute">items</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Offers"</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+        "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">enum</span>": <span class="hljs-value">[<span class="hljs-string">"store"</span>, <span class="hljs-string">"mfg"</span>]
+            </span>}</span>,
+            "<span class="hljs-attribute">badge</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">enum</span>": <span class="hljs-value">[<span class="hljs-string">""</span>, <span class="hljs-string">"store"</span>, <span class="hljs-string">"mfg"</span>]
+            </span>}</span>,
+            "<span class="hljs-attribute">clipped</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">redeemedDate</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+                "<span class="hljs-attribute">format</span>": <span class="hljs-value"><span class="hljs-string">"date-time"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">category</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">brand</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">shortDescription</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">imageUrl</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+                "<span class="hljs-attribute">format</span>": <span class="hljs-value"><span class="hljs-string">"uri"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">value</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">terms</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">minPurchase</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">offerSortValue</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">expirationDate</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+                "<span class="hljs-attribute">format</span>": <span class="hljs-value"><span class="hljs-string">"date-time"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">clipStartDate</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+                "<span class="hljs-attribute">format</span>": <span class="hljs-value"><span class="hljs-string">"date-time"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">clipEndDate</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+                "<span class="hljs-attribute">format</span>": <span class="hljs-value"><span class="hljs-string">"date-time"</span>
+            </span>}
+        </span>}
+    </span>}
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>401</code></strong><a data-toggle="collapse" data-target="#eb3b59863ef31fc26a6b490833b6ce55" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="eb3b59863ef31fc26a6b490833b6ce55" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Token <span class="hljs-keyword">is</span> invalid
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#b57e61c6597a9d04e4b578f9156c94db" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="b57e61c6597a9d04e4b578f9156c94db" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Some other <span class="hljs-keyword">error</span> occurred, DPN service likely unavailable, <span class="hljs-keyword">or</span> something was wrong <span class="hljs-keyword">with</span> <span class="hljs-keyword">the</span> parameters provided.
+</code></pre></li></ul></section><h4 id="offers-categories">Categories&nbsp;<a href="#offers-categories"><i class="fa fa-link"></i></a></h4><section id="offers-categories-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve Categories</span></div><div style="float:left"><a href="#offers-categories-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/offers/categories</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#1d40887a133a1ae608dee7ff7eeb8a30" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="1d40887a133a1ae608dee7ff7eeb8a30" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#5ecb4c0e828198930e3a0b22420da929" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="5ecb4c0e828198930e3a0b22420da929" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>[
+    {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"c2ztS9Kuoz"</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Grocery"</span></span>,
+        "<span class="hljs-attribute">offerCount</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+        "<span class="hljs-attribute">offerValue</span>": <span class="hljs-value"><span class="hljs-number">300</span></span>,
+        "<span class="hljs-attribute">key</span>": <span class="hljs-value"><span class="hljs-string">"grocery"</span>
+    </span>}
+]
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#82e5cd8cd8fa6a5326045643cd437f02" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="82e5cd8cd8fa6a5326045643cd437f02" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Some other <span class="hljs-keyword">error</span> occurred, DPN service likely unavailable, <span class="hljs-keyword">or</span> something was wrong <span class="hljs-keyword">with</span> <span class="hljs-keyword">the</span> parameters provided.
+</code></pre></li></ul></section><h4 id="offers-clip">Clip&nbsp;<a href="#offers-clip"><i class="fa fa-link"></i></a></h4><section id="offers-clip-post" class="panel panel-success"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Clip an Offer</span></div><div style="float:left"><a href="#offers-clip-post" class="btn btn-xs btn-success">POST</a></div><div style="overflow:hidden"><code>/offers/clip</code></div></div><div class="panel-body"><p>The <code>X-Auth-Token</code> header is required</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#9841d80640fd309f5ffc7e4ab9bb00f6" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="9841d80640fd309f5ffc7e4ab9bb00f6" class="list-group-item panel-collapse collapse"><div class="description"><pre><code>{
+    &quot;id&quot;: &quot;1&quot;
+}
+</code></pre>
+</div><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#841780c0ccac96372ea1a18cf5663bbf" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="841780c0ccac96372ea1a18cf5663bbf" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">clippedCount</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+    "<span class="hljs-attribute">clippedValue</span>": <span class="hljs-value"><span class="hljs-number">205</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#b9c3fd3c62fba598c49d9cfed25bdc2a" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="b9c3fd3c62fba598c49d9cfed25bdc2a" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Coupon ID <span class="hljs-keyword">is</span> invalid
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>401</code></strong><a data-toggle="collapse" data-target="#1ba819f772dd5cf551c25315a22e990d" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="1ba819f772dd5cf551c25315a22e990d" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Token <span class="hljs-keyword">is</span> invalid
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#a4be5c3e1dbecd10640014d9a2cb854f" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="a4be5c3e1dbecd10640014d9a2cb854f" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Some other <span class="hljs-keyword">error</span> occurred, DPN service likely unavailable, <span class="hljs-keyword">or</span> something was wrong <span class="hljs-keyword">with</span> <span class="hljs-keyword">the</span> parameters provided.
+</code></pre></li></ul></section><h4 id="offers-recommend">Recommend&nbsp;<a href="#offers-recommend"><i class="fa fa-link"></i></a></h4><section id="offers-recommend-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve Recommend Offers</span></div><div style="float:left"><a href="#offers-recommend-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/offers/recommend{?categories,keywords,limit}</code></div></div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>categories</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>baby,food</span></span><p>a comma delimited list of category ids to return (from the category API), default is offers from all categories</p>
+</dd><dt>keywords</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>baby,food</span></span><p>a comma delimited list of keywords to search offers for</p>
+</dd><dt>limit</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-info default"><strong>Default:&nbsp;</strong><span>1</span></span>&nbsp;<p>limit to n number of reccomendations</p>
+</dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#d6551b3f990403f510b3f68e63be55df" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="d6551b3f990403f510b3f68e63be55df" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#18fce4b1819edfef3345bb121643ad3f" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="18fce4b1819edfef3345bb121643ad3f" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>[
+    {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">40633</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"mfg"</span></span>,
+        "<span class="hljs-attribute">badge</span>": <span class="hljs-value"><span class="hljs-string">""</span></span>,
+        "<span class="hljs-attribute">clipped</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+        "<span class="hljs-attribute">redeemedDate</span>": <span class="hljs-value"><span class="hljs-literal">null</span></span>,
+        "<span class="hljs-attribute">category</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-string">"c2ztS9Kuoz"</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Grocery"</span></span>,
+            "<span class="hljs-attribute">active</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
+            "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-number">300</span></span>,
+            "<span class="hljs-attribute">key</span>": <span class="hljs-value"><span class="hljs-string">"grocery"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">brand</span>": <span class="hljs-value"><span class="hljs-string">"ConAgra Foods"</span></span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Save $0.75 on Hunt's Ketchup�. Offer redeemed with valid in-store purchase."</span></span>,
+        "<span class="hljs-attribute">shortDescription</span>": <span class="hljs-value"><span class="hljs-string">"Save $0.75 on Hunt's Ketchup�"</span></span>,
+        "<span class="hljs-attribute">imageUrl</span>": <span class="hljs-value"><span class="hljs-string">"http://d17qf54098xvyo.cloudfront.net/INTEGRATION/imageserver/cecd82efed312f421b019730f7043376-69047-20141126-13462120150212101346_965231_0.jpg"</span></span>,
+        "<span class="hljs-attribute">value</span>": <span class="hljs-value"><span class="hljs-number">75</span></span>,
+        "<span class="hljs-attribute">valueText</span>": <span class="hljs-value"><span class="hljs-string">"save $0.75"</span></span>,
+        "<span class="hljs-attribute">terms</span>": <span class="hljs-value"><span class="hljs-string">"LIMIT ONE COUPON REDEMPTION PER IN-STORE PURCHASE. ANY OTHER USE CONSTITUTES FRAUD. Void if sold, copied, transferred, altered, prohibited or restricted. Good only in the USA. CONSUMER: No other coupon may be used with this coupon. Consumer pays any sales tax and will not receive any credit or cash back if coupon value exceeds purchase price. Cash value of 1/20�. �INmart, Inc. All Rights Reserved."</span></span>,
+        "<span class="hljs-attribute">minPurchase</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+        "<span class="hljs-attribute">offerSortValue</span>": <span class="hljs-value"><span class="hljs-string">"75"</span></span>,
+        "<span class="hljs-attribute">expirationDate</span>": <span class="hljs-value"><span class="hljs-string">"2017-02-12T00:00:00.000Z"</span></span>,
+        "<span class="hljs-attribute">clipStartDate</span>": <span class="hljs-value"><span class="hljs-string">"2015-02-12T00:00:00.000Z"</span></span>,
+        "<span class="hljs-attribute">clipEndDate</span>": <span class="hljs-value"><span class="hljs-string">"2017-02-12T00:00:00.000Z"</span>
+    </span>}
+]
+</code></pre><h5>Schema</h5><pre><code>{
+    "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+    "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+    "<span class="hljs-attribute">items</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Offers"</span></span>,
+        "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+        "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">type</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">enum</span>": <span class="hljs-value">[<span class="hljs-string">"store"</span>, <span class="hljs-string">"mfg"</span>]
+            </span>}</span>,
+            "<span class="hljs-attribute">badge</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">enum</span>": <span class="hljs-value">[<span class="hljs-string">""</span>, <span class="hljs-string">"store"</span>, <span class="hljs-string">"mfg"</span>]
+            </span>}</span>,
+            "<span class="hljs-attribute">clipped</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">redeemedDate</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+                "<span class="hljs-attribute">format</span>": <span class="hljs-value"><span class="hljs-string">"date-time"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">category</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">brand</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">description</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">shortDescription</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">imageUrl</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+                "<span class="hljs-attribute">format</span>": <span class="hljs-value"><span class="hljs-string">"uri"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">value</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">terms</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">minPurchase</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">offerSortValue</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">expirationDate</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+                "<span class="hljs-attribute">format</span>": <span class="hljs-value"><span class="hljs-string">"date-time"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">clipStartDate</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+                "<span class="hljs-attribute">format</span>": <span class="hljs-value"><span class="hljs-string">"date-time"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">clipEndDate</span>": <span class="hljs-value">{
+                "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+                "<span class="hljs-attribute">format</span>": <span class="hljs-value"><span class="hljs-string">"date-time"</span>
+            </span>}
+        </span>}
+    </span>}
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#e079e17290721b6a51653e9d28d0141c" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="e079e17290721b6a51653e9d28d0141c" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Some other <span class="hljs-keyword">error</span> occurred, DPN service likely unavailable, <span class="hljs-keyword">or</span> something was wrong <span class="hljs-keyword">with</span> <span class="hljs-keyword">the</span> parameters provided.
+</code></pre></li></ul></section><h4 id="offers-keywords">Keywords&nbsp;<a href="#offers-keywords"><i class="fa fa-link"></i></a></h4><section id="offers-keywords-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve List of Keywords</span></div><div style="float:left"><a href="#offers-keywords-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/offers/keywords</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#805326cff72a0b92a88ad64bdccac1f5" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="805326cff72a0b92a88ad64bdccac1f5" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre><h5>Body</h5><pre><code>[
+    <span class="hljs-string">"nature"</span>,
+    <span class="hljs-string">"valley"</span>,
+    <span class="hljs-string">"granola"</span>,
+    <span class="hljs-string">"bars"</span>,
+    <span class="hljs-string">"betty"</span>,
+    <span class="hljs-string">"crocker"</span>,
+    <span class="hljs-string">"cookie"</span>
+]
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>500</code></strong><a data-toggle="collapse" data-target="#62081c7f676e4a0966f8db9cf8dd9aaf" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="62081c7f676e4a0966f8db9cf8dd9aaf" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>Some other <span class="hljs-keyword">error</span> occurred, DPN service likely unavailable, <span class="hljs-keyword">or</span> something was wrong <span class="hljs-keyword">with</span> <span class="hljs-keyword">the</span> parameters provided.
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="print">Print&nbsp;<a href="#print"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><h4 id="print-startup-unrestricted">Startup Unrestricted&nbsp;<a href="#print-startup-unrestricted"><i class="fa fa-link"></i></a></h4><p>Start an unrestricted print session</p>
+<section id="print-startup-unrestricted-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Startup</span></div><div style="float:left"><a href="#print-startup-unrestricted-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/print/startup</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#f6f32d4da47cb07ccf2c04c752b0ec2a" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="f6f32d4da47cb07ccf2c04c752b0ec2a" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#f46cfb111954f9cf546fd4baf88d0d33" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="f46cfb111954f9cf546fd4baf88d0d33" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">public_print_attempt_id</span>": <span class="hljs-value"><span class="hljs-string">"123456789"</span></span>,
+    "<span class="hljs-attribute">urls</span>": <span class="hljs-value">[<span class="hljs-string">"https://customer.dev/print/drender/123456789/1"</span>, <span class="hljs-string">"https://customer.dev/print/drender/123456789/2"</span>, <span class="hljs-string">"https://customer.dev/print/drender/123456789/3"</span>]
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#d373aed1cdeaa79cefb6591eb9ee609d" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="d373aed1cdeaa79cefb6591eb9ee609d" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code><span class="hljs-collection">{ <span class="hljs-string">"success"</span>: <span class="hljs-literal">false</span>, <span class="hljs-string">"error"</span>: <span class="hljs-collection">{<span class="hljs-string">"type"</span>: <span class="hljs-string">"DOCWRITER"</span>, message: <span class="hljs-string">"Printing to a document writer is not allowed."</span>}</span> }</span>
+</code></pre></li></ul></section><h4 id="print-startup-restricted">Startup Restricted&nbsp;<a href="#print-startup-restricted"><i class="fa fa-link"></i></a></h4><p>Start a resctricted print session</p>
+<section id="print-startup-restricted-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Startup</span></div><div style="float:left"><a href="#print-startup-restricted-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/print/startup{?mac_address,printer_name,format}</code></div></div><div class="panel-body"><p><a name="startup-get"></a></p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>mac_address</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>00:00:00:01:01:01</span></span><p>Client MAC address</p>
+</dd><dt>printer_name</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>127.0.0.1</span></span></dd><dt>format</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-info default"><strong>Default:&nbsp;</strong><span>png</span></span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>html</span></span><p><strong>Choices:&nbsp;</strong><code>html</code> <code>pdf</code> <code>png</code> </p></dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#fd65fd34b2e35e36da37e48e004b2f06" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="fd65fd34b2e35e36da37e48e004b2f06" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">X-Auth-Token</span>: <span class="hljs-string">exampletoken</span><br/></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#788aeb48e0f6187c02d887b96d7ac38e" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="788aeb48e0f6187c02d887b96d7ac38e" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>    {
+        "<span class="hljs-attribute">restricted</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">public_print_attempt_id</span>": <span class="hljs-value"><span class="hljs-string">"123456789"</span></span>,
+        "<span class="hljs-attribute">urls</span>": <span class="hljs-value">[<span class="hljs-string">"https://customer.dev/print/drender/123456789/1"</span>, <span class="hljs-string">"https://customer.dev/print/drender/123456789/2"</span>, <span class="hljs-string">"https://customer.dev/print/drender/123456789/3"</span>]
+    </span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#51f29e84363c6a4d5fe5dd60b95a11ef" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="51f29e84363c6a4d5fe5dd60b95a11ef" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>{ "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>, "<span class="hljs-attribute">error</span>": <span class="hljs-value">{"<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"DOCWRITER"</span></span>, "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Printing to a document writer is not allowed."</span></span>} </span>}
+</code></pre></li></ul></section><h4 id="print-print-page">Print Page&nbsp;<a href="#print-print-page"><i class="fa fa-link"></i></a></h4><section id="print-print-page-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Retrieve Page</span></div><div style="float:left"><a href="#print-print-page-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/print/{public_print_attempt_id}/{page_number}</code></div></div><div class="panel-body"><p>Retrieve Page resource URLs are returned from <a href="#startup-get">Startup [GET]</a>.</p>
+<p>Response mime-type is based on <a href="#startup-get">Startup [GET]</a> <code>print_format</code> values returning <code>text/html</code>, <code>image/png</code> or <code>application/pdf</code> documents respectively.</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>public_print_attempt_id</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>123456789</span></span></dd><dt>page_number</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span></dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#4684f2c145977ec08553fb2507bf6b90" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="4684f2c145977ec08553fb2507bf6b90" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">text/html,image/png,application/pdf</span><br/></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#7533c875a09109b84b9180c1d30372dc" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="7533c875a09109b84b9180c1d30372dc" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br/></code></pre><h5>Body</h5><pre><code>{ "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>, "<span class="hljs-attribute">error</span>": <span class="hljs-value">{"<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"BAD_URL_NUMBER"</span></span>, "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Bad url number.  Have 1, you requested 2."</span></span>}</span>}
+</code></pre></li></ul></section><h4 id="print-info">Info&nbsp;<a href="#print-info"><i class="fa fa-link"></i></a></h4><p>The info command has no args and returns the print server name and current version.</p>
+<section id="print-info-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Info</span></div><div style="float:left"><a href="#print-info-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/info</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#ab2207ae45e9ad549d7c679f5379fb0e" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="ab2207ae45e9ad549d7c679f5379fb0e" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code>{ "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>, "<span class="hljs-attribute">version</span>": <span class="hljs-value"><span class="hljs-string">"3.12"</span></span>, "<span class="hljs-attribute">server</span>": <span class="hljs-value"><span class="hljs-string">"http://walley.world"</span> </span>}
+</code></pre></li></ul></section></div></div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="unlock">Unlock&nbsp;<a href="#unlock"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>Unlock requests a javascript file that contains an unlock method which will blackbox the sharing and clipping actions.
+<code>&lt;script src=&quot;api.com/unlock/code.js&quot;&gt;&lt;/script&gt;</code></p>
+<p>The <code>unlock</code> method is invoked with an <code>offer_id</code> and an <code>unlock_id</code> and returns a node style callback.</p>
+<pre><code><span class="hljs-tag">unlock</span>(<span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">offer_id</span>:<span class="hljs-value"> <span class="hljs-number">123456789</span>, unlock_id: <span class="hljs-number">1</span> }, <span class="hljs-function">function</span>(error, response) {
+})</span></span>;
+</span></code></pre>
+<h4 id="unlock-unlock">Unlock&nbsp;<a href="#unlock-unlock"><i class="fa fa-link"></i></a></h4><p>File request for <code>unlock/code.js</code>.</p>
+<section id="unlock-unlock-get" class="panel panel-info"><div class="panel-heading"><div style="float:right"><span style="text-transform: lowercase">Unlock</span></div><div style="float:left"><a href="#unlock-unlock-get" class="btn btn-xs btn-primary">GET</a></div><div style="overflow:hidden"><code>/unlock{?offer_id,unlock_id}</code></div></div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#558771c68054ae14e29b3670ea20bd8b" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="558771c68054ae14e29b3670ea20bd8b" class="list-group-item panel-collapse collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/javascript</span><br/></code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#236eb6d033493504a96d8dba0cbef53f" class="pull-right collapsed"><span class="closed">Show</span><span class="open">Hide</span></a></li><li id="236eb6d033493504a96d8dba0cbef53f" class="list-group-item panel-collapse collapse"><h5>Body</h5><pre><code><span class="hljs-title">Bad</span> Request
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>404</code></strong></li></ul></section></div></div></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 07 Apr 2015</p></div>

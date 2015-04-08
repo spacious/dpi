@@ -1,0 +1,39 @@
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+    <div class="container">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><i class="fa fa-chevron-left"></i>dpi<i class="fa fa-chevron-right"></i></a>
+        </div>
+
+        <div class="navbar-collapse collapse navbar-right">
+
+            <ul class="nav navbar-nav">
+
+                <!--<li class="active"><a href="index.html">HOME</a></li>-->
+                <!--<li><a href="#/login">Login</a></li>-->
+                <!--<li><a href="#/contact">Contact</a></li>-->
+                <li><a href="/about/">About</a></li>
+
+                {{#each trees}}
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ text }} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    {{> dropdown_items}}
+                    </ul>
+                </li>
+
+                {{/each}}
+
+            </ul>
+
+        </div>
+    </div>
+</div>
