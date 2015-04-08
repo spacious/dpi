@@ -1,8 +1,9 @@
 {{#each children}}
+
     {{#if text}}{{#if children}}{{#unless href}}<li role="presentation" class="divider"></li>{{/unless}}{{/if}}{{/if}}
-    {{#if text}}<li{{#if children}}{{#unless href}} class="dropdown-header"{{/unless}}{{/if}}>{{#if href}}<a href="{{ href }}">{{/if}}{{#if platform}}<i class="fa fa-{{ this.platform }}"></i> {{/if}}{{text}}{{#if version}} v{{version}}{{/if}}{{#if href}}</a>{{/if}}</li>{{/if}}
+    {{#if text}}<li{{#if children}}{{#unless href}} class="dropdown-header"{{/unless}}{{/if}}>{{#if href}}<a href="{{relative_path ../../../fullpath href}}">{{/if}}{{#if platform}}<i class="fa fa-{{ this.platform }}"></i> {{/if}}{{text}}{{#if version}} v{{version}}{{/if}}{{#if href}}</a>{{/if}}</li>{{/if}}
 
     {{#if children}}
-        {{> dropdown_items}}
+        {{> dropdown_items fullpath=../../fullpath}}
     {{/if}}
 {{/each}}

@@ -12,6 +12,8 @@
 var gulp = require('gulp');
 var connect = require('gulp-connect');
 var gutil = require('gulp-util');
+var ghPages = require('gulp-gh-pages');
+
 var chalk = require('chalk');
 var mkdirp = require('mkdirp');
 
@@ -45,6 +47,12 @@ gulp.task('connect', function() {
 
 // Default
 gulp.task('default', ['build','connect','watch']);
+
+// Deploy
+gulp.task('deploy', function() {
+  return gulp.src('./build/**/*')
+    .pipe(ghPages());
+});
 
 // Init
 gulp.task('init', function(){

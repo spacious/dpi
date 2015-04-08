@@ -9,11 +9,33 @@ var templates = require('metalsmith-templates');
 var assets = require('metalsmith-assets');
 var metallic = require('metalsmith-metallic');
 var permalinks = require('metalsmith-permalinks');
+var relative = require('metalsmith-relative');
 
 var handlebars = require('handlebars');
 handlebars.registerHelper('replace', function( string, to_replace, replacement ){
     return ( string || '' ).replace( to_replace, replacement || '' );
 });
+
+// sets all file's metadata to have its file path set to `path`
+var filePathTask = function(files, metalsmith, done){
+    for(var file in files){
+        files[file].fullpath = file;
+    }
+    done();
+};
+
+var relativePathHelper = function(current, target) {
+
+    // normalize and remove starting slash
+    current = path.normalize(current).slice(0);
+    target = path.normalize(target).slice(0);
+
+    current = path.dirname(current);
+    var out = path.relative(current, target);
+    return out;
+};
+
+handlebars.registerHelper('relative_path', relativePathHelper);
 
 exports.build = function(dirname,assetsPath,cb){
 
@@ -48,11 +70,15 @@ exports.build = function(dirname,assetsPath,cb){
         .use(markdown())
         .use(assets(assetPaths))
         .use(permalinks({relative:false}))
+        .use(filePathTask)
         .use(collections(collectionPaths))
+
         .use(createTrees)
         .use(templates('handlebars'))
         .build(cb);
 };
+
+
 
 
 function createTree(info,item){
@@ -61,7 +87,7 @@ function createTree(info,item){
 
     if(info){
 
-        item.href = '/'+info.path;
+        item.href = info.path;
         item.text = info.title;
         item.date = info.date || '';
         item.platform = info.platform || '';
