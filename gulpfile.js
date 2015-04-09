@@ -22,17 +22,21 @@ var convertDocs = require('./scripts/convert-docs').convert;
 
 // Return value of connect.server() or null
 var server;
+
 // Config for connect.server()
 var serverConf = {
     root: 'build',
     livereload: true
 };
-// Path for assets
-var assetsPath = './assets';
-// Paths for built files
+
+// Files to deploy to github pages
+var deployPath = './build/**/*';
+
+// Paths for built files, used for live-reloading
 var buildPaths = ['./build/**','!./*/'];
-// Paths for source files
-var sourcePaths = ['./+(src|assets|templates)/**','!./*/'];
+
+// Paths for source files, used for watching
+var sourcePaths = ['./+(src|assets|templates)/**','!./*/','./meta.json'];
 
 // Tasks ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -50,14 +54,14 @@ gulp.task('default', ['build','connect','watch']);
 
 // Deploy
 gulp.task('deploy', function() {
-  return gulp.src('./build/**/*')
+
+    return gulp.src(deployPath)
     .pipe(ghPages());
 });
 
 // Init
 gulp.task('init', function(){
 
-    mkdirp.sync('./convert');
     mkdirp.sync('./build');
 });
 
@@ -87,7 +91,7 @@ gulp.task('watch', function() {
 // Metalsmith
 gulp.task('build-metalsmith', function() {
 
-    buildMetalsmith(__dirname,assetsPath,function(err) {
+    buildMetalsmith(function(err) {
 
         if (err) throw err;
 

@@ -1,4 +1,5 @@
 <div class="button-block text-center">
-    <a href="{{relative_path fullpath 'about/'}}" class="btn-enter"><i class="fa fa-bolt"></i> Learn More</a>
-    <a href="{{relative_path fullpath 'docs/'}}" class="btn-enter"><i class="fa fa-file-text"></i> View Docs</a>
+    {{#each lists.index_button.items}}
+    <a href="{{relative_path ../fullpath path}}" class="btn-enter">{{#if icon}}<i class="fa fa-{{icon}}"></i> {{/if}}{{title}}</a>
+    {{/each}}
 </div>

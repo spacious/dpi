@@ -1,4 +1,10 @@
+/**
+ * Contains all settings and plugins to build with Metalsmith
+ *
+ * exposes one single method: build(callback(error){});
+ */
 
+var debug = require('debug')('build-metalsmith');
 var path = require('path');
 var util = require('util');
 
@@ -10,198 +16,262 @@ var assets = require('metalsmith-assets');
 var metallic = require('metalsmith-metallic');
 var permalinks = require('metalsmith-permalinks');
 
-
 var aglio = require('./metalsmith/metalsmith-aglio');
-
+var fullpath = require('./metalsmith/metalsmith-fullpath');
+var metajson = require('./metalsmith/metalsmith-metajson');
 
 var handlebars = require('handlebars');
-handlebars.registerHelper('replace', function( string, to_replace, replacement ){
-    return ( string || '' ).replace( to_replace, replacement || '' );
-});
+var helpers = require('./handlebars/helpers');
 
-// sets all file's metadata to have its file path set to `path`
-var filePathTask = function(files, metalsmith, done){
-    for(var file in files){
-        files[file].fullpath = file;
+// pass handlebars to register any helpers
+helpers.register(handlebars);
+
+/**
+ * Main Metalsmith metadata
+ *
+ * @type {object}
+ */
+var meta = {
+    title: "IDP",
+    description: "Developer Portal",
+    partials: {
+        header : '_header',
+        footer : '_footer',
+        index_button_block : '_index_button_block',
+        navbar : '_navbar'
     }
-    done();
 };
 
-var relativePathHelper = function(current, target) {
-
-    // normalize and remove starting slash
-    current = path.normalize(current).slice(0);
-    target = path.normalize(target).slice(0);
-
-    current = path.dirname(current);
-    var out = path.relative(current, target);
-    return out;
+/**
+ * Config for metalsmith-aglio
+ * @type {object}
+ */
+var aglioConf = {
+    template:'./scripts/convert-templates/apibp/api.jade'
 };
 
-handlebars.registerHelper('relative_path', relativePathHelper);
+/**
+ * Config for metalsmith-assets
+ * @type {object}
+ */
+var assetPaths = {
+    source: './assets',     // relative to the working directory    (dirname)
+    destination: './'       // relative to the build directory      (dirname/build)
+};
 
-exports.build = function(dirname,assetsPath,cb){
+/**
+ * Config for metalsmith-permalinks
+ * @type {object}
+ */
+var permaConf = {
+    // relative creates copies of all assets to preserve paths for every file
+    relative:false
+};
 
+/**
+ * Key Value groups of files, used to group together pages for menus currently
+ * @type {object}
+ */
+var collectionPaths = {
+    index_button: '+(about|docs)/*',
+    navbar_button: 'about/*',
+    navbar_doc_dropdown: 'docs/**'
+};
+
+/**
+ * Key Value lookup of icon words (used by fontawesome)
+ * @type {object}
+ */
+var icons = {
+
+    about : 'bolt',
+    docs : 'file-text',
+    api : 'code',
+    sdk : 'code',
+    ios : 'apple',
+    android : 'android'
+};
+
+// we may move to jade
+var templateEngine = 'handlebars';
+
+/**
+ * Expose the `build` method
+ * @param cb
+ */
+exports.build = function(cb){
+
+    var dirname = path.join(__dirname,'../.');
     cb = cb || function(err){};
-
-    var meta = {
-        title: "IDP",
-        description: "Developer Portal",
-        partials: {
-            header : '_header',
-            footer : '_footer',
-            index_button_block : '_index_button_block',
-            navbar : '_navbar',
-            dropdown_items : '_dropdown_items'
-        }
-    };
-
-    var assetPaths = {
-        source: assetsPath,     // relative to the working directory
-        destination: './'       // relative to the build directory
-    };
-
-    var collectionPaths = {
-        docs: 'docs/**'
-    };
 
     var metalsmith = Metalsmith(dirname);
     metalsmith
         .clean(true)
         .metadata(meta)
-        .use(aglio({template:'./scripts/convert-templates/apibp/api.jade'}))
+        .use(metajson())
+        .use(aglio(aglioConf))
         .use(metallic())
         .use(markdown())
         .use(assets(assetPaths))
-        .use(permalinks({relative:false}))
-        .use(filePathTask)
+        .use(permalinks(permaConf))
+        .use(fullpath())
         .use(collections(collectionPaths))
-        .use(createTrees)
-        .use(templates('handlebars'))
+        .use(collectionSections)
+        .use(templates(templateEngine))
         .build(cb);
 };
 
+/**
+ * Looks up an icon by key or array (useful for paths)
+ *
+ * @param key
+ * @returns {*}
+ */
+function icon(key){
+
+    if(key.constructor === Array && key.length){
+
+        return key.reduce(function(p,v){
+
+            return icon(v) || p;
+
+        },key[0]);
 
 
+    }else if(key.constructor === String && icons[key]){
 
-function createTree(info,item){
-
-    item = item || {};
-
-    if(info){
-
-        item.href = info.path;
-        item.text = info.title;
-        item.date = info.date || '';
-        item.platform = info.platform || '';
-        item.version = info.version || '';
+        return icons[key];
     }
 
-    return item;
+    return null;
 }
 
+/**
+ * Temporary text formatting
+ *
+ * @param str
+ * @returns {*}
+ */
 function format(str){
 
     str = str.toLowerCase();
 
     var uc = ['api','sdk'];
     if(uc.indexOf(str) > -1){
-
         return str.toUpperCase();
     }
 
     if(str == 'ios'){
-
         return 'iOS';
     }
 
     return ucwords(str);
 }
 
+/**
+ * Capitalize the first letter of each word
+ *
+ * @param str
+ * @returns {*|string}
+ */
 function ucwords (str) {
+
     return (str + '').replace(/^([a-z])|\s+([a-z])/g, function ($1) {
         return $1.toUpperCase();
     });
 }
 
+/**
+ * Sort collections by path (used by collectionSections)
+ * @param a
+ * @param b
+ * @returns {number}
+ */
+function sortCollectionPaths(a,b) {
 
-function createTrees(files, metalsmith, done){
+    if (a.path < b.path){
+        return -1;
+    }
+
+    if (a.path > b.path){
+        return 1;
+    }
+
+    return 0;
+}
+
+/**
+ * Metalsmith plugin function to create a hierarchical list from collections
+ *
+ * Used by templates
+ *
+ * __Could be moved to a plugin with configurable options__
+ *
+ * @param files
+ * @param metalsmith
+ * @param done
+ */
+function collectionSections(files, metalsmith, done){
 
     var metadata = metalsmith.metadata();
 
-    var treeCollections = {};
+    var lists = {};
+
+    setImmediate(done);
 
     Object.keys(metadata.collections).forEach(function(key) {
 
         var collection = metadata.collections[key];
 
-        if(collection) {
+        if(collection && collection.length) {
 
-            var trees = {};
+            collection.sort(sortCollectionPaths);
 
-            for(var ci in collection) {
+            var list = {
+                title: null,
+                items : [],
+                sections : {}
+            };
 
-                if(collection[ci]) {
+            for(var c in collection) {
 
-                    var c = collection[ci];
-                    var p = c.path;
-                    var paths = p.split('/');
+                if(collection[c]) {
 
-                    var k = '';
-                    var tree = null;
+                    var item = collection[c];
 
-                    for( var i in paths ){
+                    if(item.path){
 
-                        var p = paths[i];
-                        k = path.join(k,p);
+                        var paths = item.path.split('/');
 
-                        if(i == 0){
+                        if(paths.length && !list.title){
+                            list.title = format(paths[0]);
+                        }
 
-                            trees[p] = tree =  trees[p] || createTree();
-
-                            if(paths.length == 1){
-
-                                tree = createTree(c,tree);
-                            }
-
-                        }else{
-
-                            if(i < paths.length - 1){
-
-                                // not the last
-                                if(!tree.children){
-                                    tree.children = {};
-                                }
-
-                                tree = tree.children[p] = tree.children[p] || createTree();
-
-                                if(i < 2){
-
-                                    tree.text = format(p);
-                                }
-
-                            }else{
-
-                                // the last
-
-                                if(!tree.children){
-                                    tree.children = {};
-                                }
-
-                                tree.children[p] = createTree(c);
+                        if(paths.length > 1){
+                            // section at level 2
+                            var p = paths[1];
+                            if(!list.sections[p]){
+                                list.sections[p] = {
+                                    title: format(p),
+                                    items : []
+                                };
                             }
                         }
+
+                        var items = (paths.length == 1) ? list.items : list.sections[p].items;
+
+                        var title = (item[key] && item[key].title ? item[key].title : item.title) || '';
+
+                        items.push({path:item.path,title:title,icon:icon(paths) || ''});
                     }
                 }
             }
 
-            treeCollections[key] = {text:format(key),children:trees};
+            lists[key] = list;
         }
     });
 
-    //console.log(util.inspect(treeCollections,{'depth':10}));
+    //debug(util.inspect(lists,{'depth':10}));
 
-    metadata.trees = treeCollections;
-
-    done();
+    metadata.lists = lists;
 }

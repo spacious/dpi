@@ -1,0 +1,925 @@
+FORMAT: 1A
+
+# Inmar Consumer Extension (ICE) API v2
+In an effort to abstract the DPN APIs, the new consumer web projects will utilize a middle-ware that is designed to return data in a way that is faster and more compatible with modern web applications.
+These APIs are designed to be RESTful and return only the data required by the application display layer.
+
+
+The API provides some key benefits for enhanced web and mobile application UX including:
+- Keyword searching of offers
+- Category counting/filtering
+- User statistics - including rank and lifetime savings with a breakdown by month Badge support to tag recommended, new and expiring offers
+
+# Group User
+
+## User [/user]
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "zip": 43402,
+                "firstname": "John",
+                "lastname": "Customer",
+                "email": "john.q@customer.com",
+                "phone": "555-555-1212",
+                "address1": "4000 Park Ave.",
+                "address2": "Apt. 1b",
+                "city": "Cleveland",
+                "state": "OH",
+                "loyaltyid": 1234323456,
+                "metadata": {
+                    "emailoptin": "none"
+                },
+                "profileComplete": true
+            }
+
+### Retrieve User [GET]
+This request has no parameters.
+
+The `X-Auth-Token` header is required.
+
++ Request
+
+    + Headers
+
+            X-Auth-Token: exampletoken
+
++ Response 200
+
+    [User][]
+
++ Response 401
+
+        Token is invalid
+
++ Response 500
+
+        Some other error occurred, DPN service likely unavailable
+
+### Create User [POST]
+
++ Response 200
+
+    [User][]
+
++ Response 400
+
+        Input XML is empty or malformed.
+
++ Response 500
+
+        An unexpected error has occurred: {x}
+
++ Response 400
+
+        Missing required tag 'Name'.
+
++ Response 409
+
+        A customer with this Phone already exists.
+
++ Response 409
+
+        A customer with this LoyaltyID already exists.
+
++ Response 409
+
+        A customer with this Alternate ID already exists.
+
++ Response 409
+
+        A customer with this Email already exists.
+
+## User Cart [/user/cart]
+
+### Retrieve User Cart [GET]
+Synonymous with passing `clipped=true` to [Offers [GET]](#offers-get)
+
+This request has no parameters.
+
+The `X-Auth-Token` header is required.
+
++ Request
+
+    + Headers
+
+            X-Auth-Token: exampletoken
+
++ Response 200
+
+    [Offers][]
+
+## Email User Cart [/user/cart/email]
+Send the user an email of their offers.
+
++ Model (application/json)
+
+    + Headers
+
+            X-Auth-Token: exampletoken
+
+    + Body
+
+            {
+                "email": "john.q@customer.com"
+            }
+
+### Send User Cart Email [POST]
++ Request
+
+    [Email User Cart][]
+
++ Response 200
+
+    [Email User Cart][]
+
++ Response 400
+
+        Bad Request
+
++ Response 500
+
+        Some other error occurred, DPN service likely unavailable
+
+## User Id [/user/id]
++ Model (application/json)
+
+### Retrieve User Id [GET]
+
+This request has no parameters.
+
+The `X-Auth-Token` header is required.
+
+Response differs by retailer "type":
+
+- *Loyalty* based retailers return object with `loyaltyId`:
+
+        { "loyaltyId" : "123456789" }
+
+- *Phone* based retailers return object with `phone`:
+
+        { "phone" : "555-555-1212" }
+
++ Request
+
+    + Headers
+
+            X-Auth-Token: exampletoken
+
++ Response 200 (application/json)
+
+        { "loyaltyId" : "123456789" }
+
++ Response 200 (application/json)
+
+        { "phone" : "555-555-1212" }
+
++ Response 401
+
+        Token is invalid
+
++ Response 500
+
+        Some other error occurred, DPN service likely unavailable
+
+### Create User Id [POST]
+
++ Request (application/json)
+
+    + Headers
+
+            X-Auth-Token: exampletoken
+
+    + Body
+
+            {
+                "userId": "c2ztS9Kuoz"
+            }
+
++ Response 200 (application/json)
+
+        { "token": "exampletoken" }
+
++ Response 401
+
+        Token is invalid
+
++ Response 500
+
+        Some other error occurred, DPN service likely unavailable
+
+## Login [/user/login]
+
++ Model (application/json)
+
+    + Headers
+
+            Origin: http://www.example-social-network.com
+
+    + Schema
+
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "title": "Login User",
+              "type": "object",
+              "properties": {
+                  "username": {
+                    "type": "string",
+                    "minLength": 4
+                  },
+                  "password": {
+                    "type": "string",
+                    "minLength": 4
+                  }
+              },
+              "required": ["username", "password"]
+            }
+
+### Login User [POST]
+`Origin` header is required for this request.
+
+The Login resource has the following attributes:
+
+- **username (required, string)** : Loyalty ID, default is 11 digits but may be variable depending on customer
+
+- **password (required, string)** : clear-text password
+
++ Request
+
+    [Login][]
+
++ Response 200 (application/json)
+
+        Response is a token which should be used for any subsequent contextual user API calls.
+
+        { "token": "exampletoken" }
+
++ Response 401
+
+        Login failed; user or password is invalid
+
++ Response 500
+
+        Some other error occurred, DPN service likely unavailable
+
+## User Password [/user/password]
+
++ Model (application/json)
+
+    + Headers
+
+            X-Auth-Token: exampletoken
+
+    + Body
+
+            {
+                "current": "123456789",
+                "updated": "c2ztS9Kuoz",
+            }
+
+### Update User Password [POST]
+The User Password resource has the following attributes:
+
+- **current (required, string)** : current password of user
+- **updated (required, string)** : new password of user
+
++ Request
+
+    [User Password][]
+
++ Response 200 (application/json)
+
+        { "token": "exampletoken" }
+
++ Response 400
+
+        Bad input paramter
+
++ Response 401
+
+        Token is invalid
+
+## User Forgot Password [/user/password/forgot]
+Sends an e-mail to the account holder with instructions and a link to reset their password.
+
+### User Forgot Password [POST]
+
++ Request (application/json)
+
+        {"email": "john.q@customer.com"}
+
++ Response 200
+
+        No response; sends an e-mail to the account holder with instructions and a link to reset their password.
+
++ Response 400
+
+        Bad input paramter
+
+## User Reset Password [/user/password/reset]
+
+### User Reset Password [POST]
+`Origin` and `X-Reset-Token` headers are required for this request.
+
+The User Password resource has the following attributes:
+
+- **updated (required, string)** : new password of user
+
++ Request
+
+    + Headers
+
+            Origin: http://www.example-social-network.com
+            X-Reset-Token: resetmetoken
+
+    + Body
+
+            {
+                "updated": "c2ztS9Kuoz",
+            }
+
++ Response 200 (application/json)
+
+        { "token": "exampletoken" }
+
++ Response 400
+
+        Invalid / Expired Token
+
+## Register [/user/register]
++ Model (application/json)
+
+    + Schema
+
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "title": "Register User",
+              "type": "object",
+              "properties": {
+                  "username": {
+                    "type": "string",
+                    "minLength": 4
+                  },
+                  "password": {
+                    "type": "string",
+                    "minLength": 4
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  }
+              },
+              "required": ["username", "password", "email"]
+            }
+
+### Register User [POST]
+
++ Request
+
+    [Register][]
+
++ Response 200 (application/json)
+
+        { "token": "exampletoken" }
+
++ Response 401
+
+        Missing either username, password, or email
+
++ Response 500
+
+        Login failed; user or password is invalid
+
+## User Stats [/user/stats]
+
+### Retrieve User Stats [GET]
+This request has no parameters.
+
+The `X-Auth-Token` header is required.
+
+The response object may or may not contain all these parameters depending on what statistics are available for user.
+
+**Normal Response:**
+
+    {
+        "savingsThisYear": 10050,
+        "savingsLastTwelveMonths": 40200,
+        "lifetimeSavings": 76525,
+        "averageMonthlySavings": 3375,
+        "rank": 15,
+        "saverType": "bottom",
+        "recommended": {
+            "missed": 65,
+            "expired": 65
+        },
+        "monthlySavings": [
+            {
+                "month": 1,
+                "value": 3375,
+                "year": 2014
+            },
+            {
+                "month": 2,
+                "value": 2433,
+                "year": 2014
+            },
+            {
+                "month": 3,
+                "value": 4100,
+                "year": 2014
+            },
+            {
+                "month": 4,
+                "value": 4673,
+                "year": 2014
+            },
+            {
+                "month": 5,
+                "value": 3375,
+                "year": 2014
+            }
+        ],
+        "updatedDate": "2014-06-26T16:41:00.007Z"
+    }
+
+**Minimum Response (No analytics for the user):**
+
+    { "lifetimeSavings": 0 }
+
++ Request
+
+    + Headers
+
+            X-Auth-Token: exampletoken
+
++ Response 200 (application/json)
+
+            {
+                "savingsThisYear": 10050,
+                "savingsLastTwelveMonths": 40200,
+                "lifetimeSavings": 76525,
+                "averageMonthlySavings": 3375,
+                "rank": 15,
+                "saverType": "bottom",
+                "recommended": {
+                    "missed": 65,
+                    "expired": 65
+                },
+                "monthlySavings": [
+                {
+                    "month": 1,
+                    "value": 3375,
+                    "year": 2014
+                },
+                {
+                    "month": 2,
+                    "value": 2433,
+                    "year": 2014
+                },
+                {
+                    "month": 3,
+                    "value": 4100,
+                    "year": 2014
+                },
+                {
+                    "month": 4,
+                    "value": 4673,
+                    "year": 2014
+                },
+                {
+                    "month": 5,
+                    "value": 3375,
+                    "year": 2014
+                }
+            ],
+            "updatedDate": "2014-06-26T16:41:00.007Z"
+        }
+
++ Response 200 (application/json)
+
+            { "lifetimeSavings": 0 }
+
++ Response 401
+
+        Token is invalid
+
++ Response 500
+
+        An unexpected error has occurred
+
+## User Summary [/user/summary]
+
+### Retrieve User Summary [GET]
+This request has no parameters.
+
+The `X-Auth-Token` header is required.
+
+The User Summary resource has the following attributes:
+
+- **clipped_count (integer)** : number of user's clipped offers
+- **clipped_value (number)** : total value of user's clipped offers
+- **profileComplete (boolean)** : whether or not user has completed their profile
+
++ Request
+
+    + Headers
+
+            X-Auth-Token: exampletoken
+
++ Response 200 (application/json)
+
+            {
+                "clipped_count": 78,
+                "clipped_value": 65.02
+                "profileComplete" : true
+            }
+
+# Group Offers
+
+## Offers [/offers{?skip,clipped,keywords,limit,categories,sort,redeemed,expired,includeClipped}]
++ Parameters
+    + skip (optional, number) ... skip specified number of offers
+    + clipped (optional, boolean) ... set to `true` to return a user's clipped offers only
+    + keywords (optional, string, `baby,food`) ... a comma delimited list of keywords to search offers for
+    + limit = `12` (optional, number)  ... limit to n number of offers
+    + categories (optional, string) ... comma delimited list of category keys, default is offers from all categories
+    + sort (optional, string) ... string for sort order, one of the following values
+        + Values
+            + `asc`
+            + `desc`
+            + `store`
+            + `mfg`
+    + redeemed (optional, boolean) ... set to `true` to retrieve a user's redeemed offers
+        token must also be set. **clipped/expired must not be set** - sets redeemedDate JSON element for date redeemed (null otherwise)
+    + expired (optional, boolean) ... set to `true` to retrieve a user's expired offers
+        token must also be set. **clipped/redeemed must not be set**
+    + includeClipped (optional, boolean) ... set to `false` to exclude clipped offers
+        overrides clipped
+
+
++ Model (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": 40633,
+                    "type": "mfg",
+                    "badge": "",
+                    "clipped": false,
+                    "redeemedDate": null,
+                    "category": {
+                        "id": "c2ztS9Kuoz",
+                        "name": "Grocery",
+                        "active": 5,
+                        "value": 300,
+                        "key": "grocery"
+                    },
+                    "brand": "ConAgra Foods",
+                    "description": "Save $0.75 on Hunt's Ketchup®. Offer redeemed with valid in-store purchase.",
+                    "shortDescription": "Save $0.75 on Hunt's Ketchup®",
+                    "imageUrl": "http://d17qf54098xvyo.cloudfront.net/INTEGRATION/imageserver/cecd82efed312f421b019730f7043376-69047-20141126-13462120150212101346_965231_0.jpg",
+                    "value": 75,
+                    "valueText": "save $0.75",
+                    "terms": "LIMIT ONE COUPON REDEMPTION PER IN-STORE PURCHASE. ANY OTHER USE CONSTITUTES FRAUD. Void if sold, copied, transferred, altered, prohibited or restricted. Good only in the USA. CONSUMER: No other coupon may be used with this coupon. Consumer pays any sales tax and will not receive any credit or cash back if coupon value exceeds purchase price. Cash value of 1/20¢. ©INmart, Inc. All Rights Reserved.",
+                    "minPurchase": "1",
+                    "offerSortValue": "75",
+                    "expirationDate": "2017-02-12T00:00:00.000Z",
+                    "clipStartDate": "2015-02-12T00:00:00.000Z",
+                    "clipEndDate": "2017-02-12T00:00:00.000Z"
+                }
+            ]
+
+    + Schema
+
+            {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "type": "array",
+                "items": {
+                    "title": "Offers",
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "type": {
+                            "enum": ["store", "mfg"]
+                        },
+                        "badge": {
+                            "enum": ["", "store", "mfg"]
+                        },
+                        "clipped": {
+                            "type": "boolean"
+                        },
+                        "redeemedDate": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "category": {
+                            "type": "object"
+                        },
+                        "brand": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "shortDescription": {
+                            "type": "string"
+                        },
+                        "imageUrl": {
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "value": {
+                            "type": "number"
+                        },
+                        "terms": {
+                            "type": "string"
+                        },
+                        "minPurchase": {
+                            "type": "number"
+                        },
+                        "offerSortValue": {
+                            "type": "string"
+                        },
+                        "expirationDate": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "clipStartDate": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "clipEndDate": {
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                }
+            }
+
+### Retrieve Offers [GET]
+<a name="offers-get"></a>
++ Request
+
+    + Headers
+
+            X-Auth-Token: exampletoken
+
+
++ Response 200
+
+    [Offers][]
+
++ Response 401
+
+        Token is invalid
+
++ Response 500
+
+        Some other error occurred, DPN service likely unavailable, or something was wrong with the parameters provided.
+
+## Categories [/offers/categories]
+
++ Model (application/json)
+
+    + Body
+
+            [
+                {
+                    "id": "c2ztS9Kuoz",
+                    "name": "Grocery",
+                    "offerCount": 5,
+                    "offerValue": 300,
+                    "key": "grocery"
+                }
+            ]
+
+### Retrieve Categories [GET]
+
++ Request
+
+    + Headers
+
+            X-Auth-Token: exampletoken
+
++ Response 200
+
+    [Categories][]
+
++ Response 500
+
+        Some other error occurred, DPN service likely unavailable, or something was wrong with the parameters provided.
+
+
+## Clip [/offers/clip]
+
++ Model (application/json)
+
+    + Body
+
+            {
+                "clippedCount": 5,
+                "clippedValue": 205
+            }
+
+### Clip an Offer [POST]
+
+The `X-Auth-Token` header is required
+
++ Request (application/json)
+
+        {
+            "id": "1"
+        }
+
+    + Headers
+
+            X-Auth-Token: exampletoken
+
++ Response 200
+
+    [Clip][]
+
++ Response 400
+
+        Coupon ID is invalid
+
++ Response 401
+
+        Token is invalid
+
++ Response 500
+
+        Some other error occurred, DPN service likely unavailable, or something was wrong with the parameters provided.
+
+
+## Recommend [/offers/recommend{?categories,keywords,limit}]
++ Parameters
+    + categories (optional, string, `baby,food`) ... a comma delimited list of category ids to return (from the category API), default is offers from all categories
+    + keywords (optional, string, `baby,food`) ... a comma delimited list of keywords to search offers for
+    + limit = `1` (optional, number)  ... limit to n number of reccomendations
+
+### Retrieve Recommend Offers [GET]
+
++ Request
+
+    + Headers
+
+            X-Auth-Token: exampletoken
+
++ Response 200
+
+    [Offers][]
+
++ Response 500
+
+        Some other error occurred, DPN service likely unavailable, or something was wrong with the parameters provided.
+
+## Keywords [/offers/keywords]
++ Model (application/json)
+
+    + Headers
+
+            X-Auth-Token: exampletoken
+
+    + Body
+
+            [
+                "nature",
+                "valley",
+                "granola",
+                "bars",
+                "betty",
+                "crocker",
+                "cookie"
+            ]
+
+### Retrieve List of Keywords [GET]
+
++ Response 200
+
+    [Keywords][]
+
++ Response 500
+
+        Some other error occurred, DPN service likely unavailable, or something was wrong with the parameters provided.
+
+# Group Print
+## Startup Unrestricted [/print/startup]
+Start an unrestricted print session
++ Model
+
+    + Headers
+
+            X-Auth-Token: exampletoken
+
+### Startup [GET]
++ Request
+
+    [Startup Unrestricted][]
+
++ Response 200 (application/json)
+
+        {
+            "success": true,
+            "public_print_attempt_id": "123456789",
+            "urls": ["https://customer.dev/print/drender/123456789/1", "https://customer.dev/print/drender/123456789/2", "https://customer.dev/print/drender/123456789/3"]
+        }
+
++ Response 400 (application/json)
+
+        { "success": false, "error": {"type": "DOCWRITER", message: "Printing to a document writer is not allowed."} }
+
+
+## Startup Restricted [/print/startup{?mac_address,printer_name,format}]
+Start a resctricted print session
++ Parameters
+    + mac_address (required, string, `00:00:00:01:01:01`) ...  Client MAC address
+    + printer_name (required, string, `127.0.0.1`) ...
+    + format = `png` (optional, string, `html`) ...
+        + Values
+            + `html`
+            + `pdf`
+            + `png`
+
+
++ Model
+
+    + Headers
+
+            X-Auth-Token: exampletoken
+
+### Startup [GET]
+<a name="startup-get"></a>
++ Request
+
+    [Startup Restricted][]
+
++ Response 200 (application/json)
+
+            {
+                "restricted": true,
+                "success": true,
+                "public_print_attempt_id": "123456789",
+                "urls": ["https://customer.dev/print/drender/123456789/1", "https://customer.dev/print/drender/123456789/2", "https://customer.dev/print/drender/123456789/3"]
+            }
+
++ Response 400 (application/json)
+
+        { "success": false, "error": {"type": "DOCWRITER", "message": "Printing to a document writer is not allowed."} }
+
+## Print Page [/print/{public_print_attempt_id}/{page_number}]
+
+### Retrieve Page [GET]
+
+Retrieve Page resource URLs are returned from [Startup [GET]](#startup-get).
+
+Response mime-type is based on [Startup [GET]](#startup-get) `print_format` values returning `text/html`, `image/png` or `application/pdf` documents respectively.
+
++ Parameters
+    + public_print_attempt_id (required, string, `123456789`) ...
+    + page_number (required, number, `1`) ...
+
++ Response 200 (text/html,image/png,application/pdf)
+
++ Response 400 (application/json)
+
+        { "success": false, "error": {"type": "BAD_URL_NUMBER", "message": "Bad url number.  Have 1, you requested 2."}}
+
+## Info [/info]
+The info command has no args and returns the print server name and current version.
+
+### Info [GET]
+
++ Response 200
+
+        { "success": true, "version": "3.12", "server": "http://walley.world" }
+
+
+# Group Unlock
+Unlock requests a javascript file that contains an unlock method which will blackbox the sharing and clipping actions.
+`<script src="api.com/unlock/code.js"></script>`
+
+The `unlock` method is invoked with an `offer_id` and an `unlock_id` and returns a node style callback.
+
+```
+unlock({ offer_id: 123456789, unlock_id: 1 }, function(error, response) {
+});
+```
+
+## Unlock [/unlock{?offer_id,unlock_id}]
+File request for `unlock/code.js`.
+
+### Unlock [GET]
+
++ Response 200 (application/javascript)
+
++ Response 400
+
+        Bad Request
+
++ Response 404

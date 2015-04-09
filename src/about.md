@@ -1,6 +1,11 @@
 ---
 title: Our Services
+index_button:
+    title: Learn More
+navbar_button:
+    title: About
 template: page.html
+
 ---
 
 ## About Our Services

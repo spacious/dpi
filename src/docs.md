@@ -1,6 +1,9 @@
 ---
-title: Doc Overview
+title: Documentation Overview
+index_button:
+    title: View Docs
 template: page.html
+
 ---
 
 ## Documentation Overview

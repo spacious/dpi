@@ -16,18 +16,28 @@
 
             <ul class="nav navbar-nav">
 
-                <li><a href="{{relative_path fullpath 'about/'}}">About</a></li>
+                {{#each lists.navbar_button.items}}
+                <li><a href="{{relative_path ../fullpath path}}">{{title}}</a></li>
+                {{/each}}
 
-                {{#each trees}}
-
+                {{#with lists.navbar_doc_dropdown}}
+                {{! Two levels deep, more could be done with recursive partials. Exactly. }}
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ text }} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{title}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                    {{> dropdown_items fullpath=../fullpath}}
+                        {{#each items}}
+                        <li><a href="{{relative_path ../../fullpath path}}">{{#if icon}}<i class="fa fa-{{icon}}"></i> {{/if}}{{title}}</a></li>
+                        {{/each}}
+                        {{#each sections}}
+                        <li role="presentation" class="divider"></li>
+                        <li class="dropdown-header">{{title}}</li>
+                        {{#each items}}
+                        <li><a href="{{relative_path ../../../fullpath path}}">{{#if icon}}<i class="fa fa-{{icon}}"></i> {{/if}}{{title}}</a></li>
+                        {{/each}}
+                        {{/each}}
                     </ul>
                 </li>
-
-                {{/each}}
+                {{/with}}
 
             </ul>
 
