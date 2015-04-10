@@ -15,11 +15,9 @@
         <div class="navbar-collapse collapse navbar-right">
 
             <ul class="nav navbar-nav">
-
                 {{#each lists.navbar_button.items}}
                 <li><a href="{{relative_path ../link path}}">{{title}}</a></li>
                 {{/each}}
-
                 {{#with lists.navbar_doc_dropdown}}
                 {{! Two levels deep, more could be done with recursive partials. Exactly. }}
                 <li class="dropdown">
@@ -38,9 +36,7 @@
                     </ul>
                 </li>
                 {{/with}}
-
             </ul>
-
         </div>
     </div>
 </div>

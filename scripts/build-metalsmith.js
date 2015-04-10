@@ -20,6 +20,7 @@ var filepath = require('metalsmith-filepath');
 var aglio = require('./metalsmith/metalsmith-aglio');
 var matter = require('./metalsmith/metalsmith-matter');
 var hide = require('./metalsmith/metalsmith-hide');
+var versions = require('./metalsmith/metalsmith-versions');
 
 var handlebars = require('handlebars');
 var helpers = require('./handlebars/helpers');
@@ -120,6 +121,11 @@ exports.build = function(cb){
         .metadata(meta)
         .use(matter())
         .use(hide())
+        .use(versions({
+            "files" : [
+                "docs/sdk/hapi/**"
+            ]
+        }))
         .use(aglio(aglioConf))
         .use(metallic())
         .use(markdown())
@@ -272,8 +278,14 @@ function collectionSections(files, metalsmith, done){
                         var items = (paths.length == 1) ? list.items : list.sections[p].items;
 
                         var title = (item[key] && item[key].title ? item[key].title : item.title) || '';
+                        var hide = (item[key] && item[key].hide ? true : false);
 
-                        items.push({path:item.path,title:title,icon:icon(paths) || ''});
+                        if(!hide){
+
+                            items.push({path:item.path,title:title,icon:icon(paths) || '',version:item.version||''});
+                        }
+
+                        items.sort(sortVersionsDesc);
                     }
                 }
             }
@@ -285,4 +297,17 @@ function collectionSections(files, metalsmith, done){
     //debug(util.inspect(lists,{'depth':10}));
 
     metadata.lists = lists;
+}
+
+function sortVersionsDesc(a,b) {
+
+    if (a.version > b.version){
+        return -1;
+    }
+
+    if (a.version < b.version){
+        return 1;
+    }
+
+    return 0;
 }

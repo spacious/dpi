@@ -4,11 +4,11 @@
 module.exports = plugin;
 
 /**
- * Metalsmith plugin to hide files that have a truthy value for key (ie `hide:true`)
+ * Metalsmith plugin to hide files that have a truthy value for one or more keys (ie `hide:true`)
  *
- * This plugin is an exact copy of metalsmith-drafts except it allows you to set the key, so...
+ * This plugin is an exact copy of metalsmith-drafts except it allows you to set the keys, so...
  *
- *  metalsmith-drafts() = metalsmith-hide('draft') || metalsmith-hide({key:'draft'})
+ *  metalsmith-drafts() = metalsmith-hide('draft') || metalsmith-hide(['draft']) || metalsmith-hide({keys:['draft']})
  *
  * @see https://github.com/segmentio/metalsmith-drafts
  *
@@ -19,16 +19,28 @@ module.exports = plugin;
 function plugin(options){
 
     options = options || {};
-    if ('string' == typeof options) {
-        options = { key: options };
-    }
-    var key = options.key || 'hide';
 
-    return function(files, metalsmith, done){
+    if ('string' == typeof options) {
+        options = [options];
+    }
+    if ('array' == typeof options) {
+        options = { keys: options };
+    }
+
+    var keys = options.keys || ['hide','draft'];
+
+    return function metalsmith_hide(files, metalsmith, done){
+
         setImmediate(done);
+
         Object.keys(files).forEach(function(file){
+
             var data = files[file];
-            if (data[key]) delete files[file];
+
+            if(keys.some(function(key){return (data[key]);})){
+
+                delete files[file];
+            }
         });
     };
 }
