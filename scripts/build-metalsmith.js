@@ -15,10 +15,11 @@ var templates = require('metalsmith-templates');
 var assets = require('metalsmith-assets');
 var metallic = require('metalsmith-metallic');
 var permalinks = require('metalsmith-permalinks');
+var filepath = require('metalsmith-filepath');
 
 var aglio = require('./metalsmith/metalsmith-aglio');
-var fullpath = require('./metalsmith/metalsmith-fullpath');
-var metajson = require('./metalsmith/metalsmith-metajson');
+var matter = require('./metalsmith/metalsmith-matter');
+var hide = require('./metalsmith/metalsmith-hide');
 
 var handlebars = require('handlebars');
 var helpers = require('./handlebars/helpers');
@@ -47,7 +48,7 @@ var meta = {
  * @type {object}
  */
 var aglioConf = {
-    template:'./scripts/convert-templates/apibp/api.jade'
+    template:'./scripts/templates/apibp/api.jade'
 };
 
 /**
@@ -57,6 +58,15 @@ var aglioConf = {
 var assetPaths = {
     source: './assets',     // relative to the working directory    (dirname)
     destination: './'       // relative to the build directory      (dirname/build)
+};
+
+/**
+ * Config for metalsmith-filepath
+ * @type {object}
+ */
+var filePathConf = {
+    // removes / from beginning of path (`link`)
+    absolute:false
 };
 
 /**
@@ -108,13 +118,14 @@ exports.build = function(cb){
     metalsmith
         .clean(true)
         .metadata(meta)
-        .use(metajson())
+        .use(matter())
+        .use(hide())
         .use(aglio(aglioConf))
         .use(metallic())
         .use(markdown())
         .use(assets(assetPaths))
         .use(permalinks(permaConf))
-        .use(fullpath())
+        .use(filepath(filePathConf))
         .use(collections(collectionPaths))
         .use(collectionSections)
         .use(templates(templateEngine))

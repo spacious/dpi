@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{relative_path fullpath 'index.html'}}"><i class="fa fa-chevron-left"></i>dpi<i class="fa fa-chevron-right"></i></a>
+            <a class="navbar-brand" href="{{relative_path link 'index.html'}}"><i class="fa fa-chevron-left"></i>dpi<i class="fa fa-chevron-right"></i></a>
         </div>
 
         <div class="navbar-collapse collapse navbar-right">
@@ -17,7 +17,7 @@
             <ul class="nav navbar-nav">
 
                 {{#each lists.navbar_button.items}}
-                <li><a href="{{relative_path ../fullpath path}}">{{title}}</a></li>
+                <li><a href="{{relative_path ../link path}}">{{title}}</a></li>
                 {{/each}}
 
                 {{#with lists.navbar_doc_dropdown}}
@@ -26,13 +26,13 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{title}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         {{#each items}}
-                        <li><a href="{{relative_path ../../fullpath path}}">{{#if icon}}<i class="fa fa-{{icon}}"></i> {{/if}}{{title}}</a></li>
+                        <li><a href="{{relative_path ../../link path}}">{{#if icon}}<i class="fa fa-{{icon}}"></i> {{/if}}{{title}}</a></li>
                         {{/each}}
                         {{#each sections}}
                         <li role="presentation" class="divider"></li>
                         <li class="dropdown-header">{{title}}</li>
                         {{#each items}}
-                        <li><a href="{{relative_path ../../../fullpath path}}">{{#if icon}}<i class="fa fa-{{icon}}"></i> {{/if}}{{title}}</a></li>
+                        <li><a href="{{relative_path ../../../link path}}">{{#if icon}}<i class="fa fa-{{icon}}"></i> {{/if}}{{title}}</a></li>
                         {{/each}}
                         {{/each}}
                     </ul>

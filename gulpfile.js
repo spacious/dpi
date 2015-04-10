@@ -17,8 +17,14 @@ var ghPages = require('gulp-gh-pages');
 var chalk = require('chalk');
 var mkdirp = require('mkdirp');
 
+var argv = require('yargs').options('r', {
+    alias: 'reload',
+    boolean: true,
+    describe: 'Use live reload',
+    "default": true
+  }).strict().argv;
+
 var buildMetalsmith = require('./scripts/build-metalsmith').build;
-var convertDocs = require('./scripts/convert-docs').convert;
 
 // Return value of connect.server() or null
 var server;
@@ -26,7 +32,7 @@ var server;
 // Config for connect.server()
 var serverConf = {
     root: 'build',
-    livereload: true
+    livereload: argv.r
 };
 
 // Files to deploy to github pages
@@ -36,7 +42,7 @@ var deployPath = './build/**/*';
 var buildPaths = ['./build/**','!./*/'];
 
 // Paths for source files, used for watching
-var sourcePaths = ['./+(src|assets|templates)/**','!./*/','./meta.json'];
+var sourcePaths = ['./+(src|assets|templates)/**','!./*/','./matter.json'];
 
 // Tasks ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -57,12 +63,6 @@ gulp.task('deploy', function() {
 
     return gulp.src(deployPath)
     .pipe(ghPages());
-});
-
-// Init
-gulp.task('init', function(){
-
-    mkdirp.sync('./build');
 });
 
 // Post Build
@@ -99,13 +99,4 @@ gulp.task('build-metalsmith', function() {
 
         gulp.start('post-build');
     });
-});
-
-// Converters //////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// Api-Blueprint
-gulp.task('convert-docs', function() {
-
-    convertDocs('./convert','./scripts/convert-templates','./src/docs');
-
 });
