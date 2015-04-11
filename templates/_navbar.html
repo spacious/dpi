@@ -21,16 +21,16 @@
                 {{#with lists.navbar_doc_dropdown}}
                 {{! Two levels deep, more could be done with recursive partials. Exactly. }}
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{title}} <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{format_title title}} <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         {{#each items}}
-                        <li><a href="{{relative_path ../../link path}}">{{#if icon}}<i class="fa fa-{{icon}}"></i> {{/if}}{{title}}</a></li>
+                        <li><a href="{{relative_path ../../link path}}">{{link_icon path}}{{title}}</a></li>
                         {{/each}}
                         {{#each sections}}
                         <li role="presentation" class="divider"></li>
-                        <li class="dropdown-header">{{title}}</li>
+                        <li class="dropdown-header">{{format_title title}}</li>
                         {{#each items}}
-                        <li><a href="{{relative_path ../../../link path}}">{{#if icon}}<i class="fa fa-{{icon}}"></i> {{/if}}{{title}}</a></li>
+                        <li><a href="{{relative_path ../../../link path}}">{{link_icon path}}{{title}}</a></li>
                         {{/each}}
                         {{/each}}
                     </ul>
